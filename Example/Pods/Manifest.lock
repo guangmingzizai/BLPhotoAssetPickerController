@@ -1,0 +1,37 @@
+PODS:
+  - BLPhotoAssetPickerController (0.1.0):
+    - Masonry
+    - MBProgressHUD
+    - MWPhotoBrowser@guangmingzizai (~> 2.2.0)
+  - DACircularProgress (2.3.1)
+  - Masonry (1.0.2)
+  - MBProgressHUD (0.9.2)
+  - MWPhotoBrowser@guangmingzizai (2.2.0):
+    - DACircularProgress (~> 2.3)
+    - MBProgressHUD (~> 0.9)
+    - pop (~> 1.0)
+    - SDWebImage (!= 3.7.2, ~> 3.7)
+  - pop (1.0.9)
+  - SDWebImage (3.8.2):
+    - SDWebImage/Core (= 3.8.2)
+  - SDWebImage/Core (3.8.2)
+
+DEPENDENCIES:
+  - BLPhotoAssetPickerController (from `../`)
+
+EXTERNAL SOURCES:
+  BLPhotoAssetPickerController:
+    :path: ../
+
+SPEC CHECKSUMS:
+  BLPhotoAssetPickerController: db3d9363e112ac57065acfdbdb9c0f52537a417f
+  DACircularProgress: 4dd437c0fc3da5161cb289e07ac449493d41db71
+  Masonry: 7c429b56da9d4ee0bbb3ed77a5ea710d6a5df39e
+  MBProgressHUD: 1569cf7ace17a8bac47aabfbb8580a49690386d1
+  MWPhotoBrowser@guangmingzizai: 81445ed0ec5bfd162881247610670742d37def92
+  pop: f667631a5108a2e60d9e8797c9b32ddaf2080bce
+  SDWebImage: 098e97e6176540799c27e804c96653ee0833d13c
+
+PODFILE CHECKSUM: c93dcfde15e23a4292e0f759d76d01d20e30537c
+
+COCOAPODS: 1.1.0.rc.2
