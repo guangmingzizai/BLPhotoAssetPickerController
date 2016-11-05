@@ -1,0 +1,11 @@
+use_frameworks!
+
+target 'BLPhotoAssetPickerController_Example' do
+  pod 'BLPhotoAssetPickerController', :path => '../'
+
+  target 'BLPhotoAssetPickerController_Tests' do
+    inherit! :search_paths
+
+    
+  end
+end
