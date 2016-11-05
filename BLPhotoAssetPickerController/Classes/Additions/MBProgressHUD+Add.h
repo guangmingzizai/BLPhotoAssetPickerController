@@ -10,9 +10,9 @@
 
 @interface MBProgressHUD (Add)
 
-+ (void)showProcessTip:(NSString *)tip;
++ (instancetype)showProcessTip:(NSString *)tip;
++ (instancetype)showProcessTip:(NSString *)tip inView:(UIView *)superview;
 + (void)showProcessTip:(NSString *)tip offY:(CGFloat)y;
-+ (void)showProcessTip:(NSString *)tip inView:(UIView *)superview;
 + (void)hideProcessTip;
 + (void)hideProcessTip:(UIView *)superview;
 + (void)showSuccessTip:(NSString *)tip;

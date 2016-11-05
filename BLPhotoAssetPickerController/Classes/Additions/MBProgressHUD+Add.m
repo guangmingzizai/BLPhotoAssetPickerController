@@ -11,14 +11,14 @@
 
 @implementation MBProgressHUD (Add)
 
-+ (void)showProcessTip:(NSString *)tip {
++ (instancetype)showProcessTip:(NSString *)tip {
     [self hideProcessTip];
-    [MBProgressHUD showHUDAddedTo:[UIWindow bl_mainWindow] animated:YES withTitle:tip];
+    return [MBProgressHUD showHUDAddedTo:[UIWindow bl_mainWindow] animated:YES withTitle:tip];
 }
 
-+ (void)showProcessTip:(NSString *)tip inView:(UIView *)superview {
++ (instancetype)showProcessTip:(NSString *)tip inView:(UIView *)superview {
     [self hideProcessTip:superview];
-    [MBProgressHUD showHUDAddedTo:superview animated:YES withTitle:tip];
+    return [MBProgressHUD showHUDAddedTo:superview animated:YES withTitle:tip];
 }
 
 + (void)showProcessTip:(NSString *)tip offY:(CGFloat)y {

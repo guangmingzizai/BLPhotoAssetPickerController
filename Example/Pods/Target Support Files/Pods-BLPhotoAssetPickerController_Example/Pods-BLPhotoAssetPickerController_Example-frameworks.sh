@@ -89,7 +89,11 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "$BUILT_PRODUCTS_DIR/MBProgressHUD/MBProgressHUD.framework"
   install_framework "$BUILT_PRODUCTS_DIR/MWPhotoBrowser@guangmingzizai/MWPhotoBrowser_guangmingzizai.framework"
   install_framework "$BUILT_PRODUCTS_DIR/Masonry/Masonry.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/RMUniversalAlert/RMUniversalAlert.framework"
   install_framework "$BUILT_PRODUCTS_DIR/SDWebImage/SDWebImage.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/UIActionSheet+Blocks/UIActionSheet_Blocks.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/UIAlertController+Blocks/UIAlertController_Blocks.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/UIAlertView+Blocks/UIAlertView_Blocks.framework"
   install_framework "$BUILT_PRODUCTS_DIR/pop/pop.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
@@ -98,6 +102,10 @@ if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "$BUILT_PRODUCTS_DIR/MBProgressHUD/MBProgressHUD.framework"
   install_framework "$BUILT_PRODUCTS_DIR/MWPhotoBrowser@guangmingzizai/MWPhotoBrowser_guangmingzizai.framework"
   install_framework "$BUILT_PRODUCTS_DIR/Masonry/Masonry.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/RMUniversalAlert/RMUniversalAlert.framework"
   install_framework "$BUILT_PRODUCTS_DIR/SDWebImage/SDWebImage.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/UIActionSheet+Blocks/UIActionSheet_Blocks.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/UIAlertController+Blocks/UIAlertController_Blocks.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/UIAlertView+Blocks/UIAlertView_Blocks.framework"
   install_framework "$BUILT_PRODUCTS_DIR/pop/pop.framework"
 fi

@@ -12,12 +12,22 @@ PODS:
     - pop (~> 1.0)
     - SDWebImage (!= 3.7.2, ~> 3.7)
   - pop (1.0.9)
+  - RMUniversalAlert (0.8.1):
+    - RMUniversalAlert/Core (= 0.8.1)
+  - RMUniversalAlert/Core (0.8.1):
+    - UIActionSheet+Blocks (>= 0.9)
+    - UIAlertController+Blocks (>= 0.9)
+    - UIAlertView+Blocks (>= 0.9)
   - SDWebImage (3.8.2):
     - SDWebImage/Core (= 3.8.2)
   - SDWebImage/Core (3.8.2)
+  - UIActionSheet+Blocks (0.9)
+  - UIAlertController+Blocks (0.9.2)
+  - UIAlertView+Blocks (0.9)
 
 DEPENDENCIES:
   - BLPhotoAssetPickerController (from `../`)
+  - RMUniversalAlert
 
 EXTERNAL SOURCES:
   BLPhotoAssetPickerController:
@@ -30,8 +40,12 @@ SPEC CHECKSUMS:
   MBProgressHUD: 1569cf7ace17a8bac47aabfbb8580a49690386d1
   MWPhotoBrowser@guangmingzizai: 81445ed0ec5bfd162881247610670742d37def92
   pop: f667631a5108a2e60d9e8797c9b32ddaf2080bce
+  RMUniversalAlert: ce7118101a19fa41b9adedf907b66a8cc3bd32c8
   SDWebImage: 098e97e6176540799c27e804c96653ee0833d13c
+  UIActionSheet+Blocks: e180b7dad0a721ab7f212ac9742af799008bb358
+  UIAlertController+Blocks: 80e28b92523fb58aba4d1bccec013d5a0b0bddb2
+  UIAlertView+Blocks: a46c99c5144f6c5dbc7d62fd2a0678daceec89a3
 
-PODFILE CHECKSUM: c93dcfde15e23a4292e0f759d76d01d20e30537c
+PODFILE CHECKSUM: cb8de8c3bd28626d623b9c8218a6e5d3d940db08
 
 COCOAPODS: 1.1.0.rc.2

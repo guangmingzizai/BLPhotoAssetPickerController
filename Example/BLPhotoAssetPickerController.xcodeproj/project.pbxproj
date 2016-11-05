@@ -14,7 +14,6 @@
 		6003F598195388D20070C39A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6003F596195388D20070C39A /* InfoPlist.strings */; };
 		6003F59A195388D20070C39A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6003F599195388D20070C39A /* main.m */; };
 		6003F59E195388D20070C39A /* BLAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6003F59D195388D20070C39A /* BLAppDelegate.m */; };
-		6003F5A7195388D20070C39A /* BLViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6003F5A6195388D20070C39A /* BLViewController.m */; };
 		6003F5A9195388D20070C39A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6003F5A8195388D20070C39A /* Images.xcassets */; };
 		6003F5B0195388D20070C39A /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F5AF195388D20070C39A /* XCTest.framework */; };
 		6003F5B1195388D20070C39A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58D195388D20070C39A /* Foundation.framework */; };
@@ -22,7 +21,13 @@
 		6003F5BA195388D20070C39A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6003F5B8195388D20070C39A /* InfoPlist.strings */; };
 		6003F5BC195388D20070C39A /* Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6003F5BB195388D20070C39A /* Tests.m */; };
 		63723E7A92D4869DDCAFC7BF /* Pods_BLPhotoAssetPickerController_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50C12E35CAF15CA6542AD67E /* Pods_BLPhotoAssetPickerController_Example.framework */; };
-		873B8AEB1B1F5CCA007FD442 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 873B8AEA1B1F5CCA007FD442 /* Main.storyboard */; };
+		6C3F87E61DCDEFB200CFC79B /* BLUserInterfaceTransitionService.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C3F87E51DCDEFB200CFC79B /* BLUserInterfaceTransitionService.m */; };
+		6C3F87EB1DCDF24D00CFC79B /* BLAppearance.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C3F87EA1DCDF24D00CFC79B /* BLAppearance.m */; };
+		6CA8EEF41DCDDFDA00F5340F /* BLSendNinePicStuatusViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CA8EEF31DCDDFDA00F5340F /* BLSendNinePicStuatusViewController.m */; };
+		6CA8EEF91DCDDFFF00F5340F /* BLNinePicAddCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CA8EEF61DCDDFFF00F5340F /* BLNinePicAddCollectionViewCell.m */; };
+		6CA8EEFA1DCDDFFF00F5340F /* BLNinePicCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CA8EEF81DCDDFFF00F5340F /* BLNinePicCollectionViewCell.m */; };
+		6CA8EF011DCDE1A200F5340F /* UITextField+LengthLimit.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CA8EEFE1DCDE1A200F5340F /* UITextField+LengthLimit.m */; };
+		6CA8EF021DCDE1A200F5340F /* UITextView+LengthLimit.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CA8EF001DCDE1A200F5340F /* UITextView+LengthLimit.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,8 +54,6 @@
 		6003F59B195388D20070C39A /* BLPhotoAssetPickerController-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "BLPhotoAssetPickerController-Prefix.pch"; sourceTree = "<group>"; };
 		6003F59C195388D20070C39A /* BLAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BLAppDelegate.h; sourceTree = "<group>"; };
 		6003F59D195388D20070C39A /* BLAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BLAppDelegate.m; sourceTree = "<group>"; };
-		6003F5A5195388D20070C39A /* BLViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BLViewController.h; sourceTree = "<group>"; };
-		6003F5A6195388D20070C39A /* BLViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BLViewController.m; sourceTree = "<group>"; };
 		6003F5A8195388D20070C39A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		6003F5AE195388D20070C39A /* BLPhotoAssetPickerController_Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BLPhotoAssetPickerController_Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6003F5AF195388D20070C39A /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
@@ -58,7 +61,21 @@
 		6003F5B9195388D20070C39A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		6003F5BB195388D20070C39A /* Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tests.m; sourceTree = "<group>"; };
 		606FC2411953D9B200FFA9A0 /* Tests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Tests-Prefix.pch"; sourceTree = "<group>"; };
-		873B8AEA1B1F5CCA007FD442 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		6C3F87E41DCDEFB200CFC79B /* BLUserInterfaceTransitionService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLUserInterfaceTransitionService.h; sourceTree = "<group>"; };
+		6C3F87E51DCDEFB200CFC79B /* BLUserInterfaceTransitionService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BLUserInterfaceTransitionService.m; sourceTree = "<group>"; };
+		6C3F87E91DCDF24D00CFC79B /* BLAppearance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLAppearance.h; sourceTree = "<group>"; };
+		6C3F87EA1DCDF24D00CFC79B /* BLAppearance.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BLAppearance.m; sourceTree = "<group>"; };
+		6CA8EEF21DCDDFDA00F5340F /* BLSendNinePicStuatusViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLSendNinePicStuatusViewController.h; sourceTree = "<group>"; };
+		6CA8EEF31DCDDFDA00F5340F /* BLSendNinePicStuatusViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BLSendNinePicStuatusViewController.m; sourceTree = "<group>"; };
+		6CA8EEF51DCDDFFF00F5340F /* BLNinePicAddCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLNinePicAddCollectionViewCell.h; sourceTree = "<group>"; };
+		6CA8EEF61DCDDFFF00F5340F /* BLNinePicAddCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BLNinePicAddCollectionViewCell.m; sourceTree = "<group>"; };
+		6CA8EEF71DCDDFFF00F5340F /* BLNinePicCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLNinePicCollectionViewCell.h; sourceTree = "<group>"; };
+		6CA8EEF81DCDDFFF00F5340F /* BLNinePicCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BLNinePicCollectionViewCell.m; sourceTree = "<group>"; };
+		6CA8EEFB1DCDE0C600F5340F /* Constants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
+		6CA8EEFD1DCDE1A200F5340F /* UITextField+LengthLimit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITextField+LengthLimit.h"; sourceTree = "<group>"; };
+		6CA8EEFE1DCDE1A200F5340F /* UITextField+LengthLimit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITextField+LengthLimit.m"; sourceTree = "<group>"; };
+		6CA8EEFF1DCDE1A200F5340F /* UITextView+LengthLimit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITextView+LengthLimit.h"; sourceTree = "<group>"; };
+		6CA8EF001DCDE1A200F5340F /* UITextView+LengthLimit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITextView+LengthLimit.m"; sourceTree = "<group>"; };
 		A7C1CEF909FB7F591144FDBA /* BLPhotoAssetPickerController.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = BLPhotoAssetPickerController.podspec; path = ../BLPhotoAssetPickerController.podspec; sourceTree = "<group>"; };
 		CD5DBDB5840D72334D708D13 /* Pods-BLPhotoAssetPickerController_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BLPhotoAssetPickerController_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-BLPhotoAssetPickerController_Example/Pods-BLPhotoAssetPickerController_Example.release.xcconfig"; sourceTree = "<group>"; };
 		CF28AEF083B671353A95F414 /* Pods-BLPhotoAssetPickerController_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BLPhotoAssetPickerController_Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BLPhotoAssetPickerController_Example/Pods-BLPhotoAssetPickerController_Example.debug.xcconfig"; sourceTree = "<group>"; };
@@ -130,11 +147,19 @@
 		6003F593195388D20070C39A /* Example for BLPhotoAssetPickerController */ = {
 			isa = PBXGroup;
 			children = (
+				6CA8EEFC1DCDE17500F5340F /* Category */,
 				6003F59C195388D20070C39A /* BLAppDelegate.h */,
 				6003F59D195388D20070C39A /* BLAppDelegate.m */,
-				873B8AEA1B1F5CCA007FD442 /* Main.storyboard */,
-				6003F5A5195388D20070C39A /* BLViewController.h */,
-				6003F5A6195388D20070C39A /* BLViewController.m */,
+				6CA8EEF21DCDDFDA00F5340F /* BLSendNinePicStuatusViewController.h */,
+				6CA8EEF31DCDDFDA00F5340F /* BLSendNinePicStuatusViewController.m */,
+				6CA8EEF51DCDDFFF00F5340F /* BLNinePicAddCollectionViewCell.h */,
+				6CA8EEF61DCDDFFF00F5340F /* BLNinePicAddCollectionViewCell.m */,
+				6CA8EEF71DCDDFFF00F5340F /* BLNinePicCollectionViewCell.h */,
+				6CA8EEF81DCDDFFF00F5340F /* BLNinePicCollectionViewCell.m */,
+				6C3F87E41DCDEFB200CFC79B /* BLUserInterfaceTransitionService.h */,
+				6C3F87E51DCDEFB200CFC79B /* BLUserInterfaceTransitionService.m */,
+				6C3F87E91DCDF24D00CFC79B /* BLAppearance.h */,
+				6C3F87EA1DCDF24D00CFC79B /* BLAppearance.m */,
 				6003F5A8195388D20070C39A /* Images.xcassets */,
 				6003F594195388D20070C39A /* Supporting Files */,
 			);
@@ -149,6 +174,7 @@
 				6003F596195388D20070C39A /* InfoPlist.strings */,
 				6003F599195388D20070C39A /* main.m */,
 				6003F59B195388D20070C39A /* BLPhotoAssetPickerController-Prefix.pch */,
+				6CA8EEFB1DCDE0C600F5340F /* Constants.h */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -180,6 +206,17 @@
 				D6BA3D6115C903617F488801 /* LICENSE */,
 			);
 			name = "Podspec Metadata";
+			sourceTree = "<group>";
+		};
+		6CA8EEFC1DCDE17500F5340F /* Category */ = {
+			isa = PBXGroup;
+			children = (
+				6CA8EEFD1DCDE1A200F5340F /* UITextField+LengthLimit.h */,
+				6CA8EEFE1DCDE1A200F5340F /* UITextField+LengthLimit.m */,
+				6CA8EEFF1DCDE1A200F5340F /* UITextView+LengthLimit.h */,
+				6CA8EF001DCDE1A200F5340F /* UITextView+LengthLimit.m */,
+			);
+			path = Category;
 			sourceTree = "<group>";
 		};
 		AE7479A8ED2E726168A63FAA /* Pods */ = {
@@ -279,7 +316,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				873B8AEB1B1F5CCA007FD442 /* Main.storyboard in Resources */,
 				6003F5A9195388D20070C39A /* Images.xcassets in Resources */,
 				6003F598195388D20070C39A /* InfoPlist.strings in Resources */,
 			);
@@ -394,7 +430,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				6003F59E195388D20070C39A /* BLAppDelegate.m in Sources */,
-				6003F5A7195388D20070C39A /* BLViewController.m in Sources */,
+				6CA8EF011DCDE1A200F5340F /* UITextField+LengthLimit.m in Sources */,
+				6C3F87EB1DCDF24D00CFC79B /* BLAppearance.m in Sources */,
+				6CA8EEF41DCDDFDA00F5340F /* BLSendNinePicStuatusViewController.m in Sources */,
+				6C3F87E61DCDEFB200CFC79B /* BLUserInterfaceTransitionService.m in Sources */,
+				6CA8EF021DCDE1A200F5340F /* UITextView+LengthLimit.m in Sources */,
+				6CA8EEFA1DCDDFFF00F5340F /* BLNinePicCollectionViewCell.m in Sources */,
+				6CA8EEF91DCDDFFF00F5340F /* BLNinePicAddCollectionViewCell.m in Sources */,
 				6003F59A195388D20070C39A /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

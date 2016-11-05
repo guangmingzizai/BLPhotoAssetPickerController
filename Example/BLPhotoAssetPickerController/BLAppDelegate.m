@@ -7,12 +7,21 @@
 //
 
 #import "BLAppDelegate.h"
+#import "BLUserInterfaceTransitionService.h"
+#import "BLAppearance.h"
 
 @implementation BLAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    // Override point for customization after application launch.
+    [BLAppearance setupGlobalStyle];
+    self.window = ({
+        UIWindow* window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
+        window.backgroundColor  = [UIColor blackColor];
+        window;
+    });
+    [[BLUserInterfaceTransitionService sharedInstance] showInitialScreen];
+    
     return YES;
 }
 

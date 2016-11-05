@@ -8,6 +8,7 @@
 #import "BLAssetSwitch.h"
 #import "BLPhotoAssetPickerController.h"
 #import "BLPhotoAssetViewController.h"
+#import "Constants.h"
 #import "BLPhotoDataCenter.h"
 #import "BLPhotoUtils.h"
 #import "PHAssetCollection+BLPhotoUtils.h"
