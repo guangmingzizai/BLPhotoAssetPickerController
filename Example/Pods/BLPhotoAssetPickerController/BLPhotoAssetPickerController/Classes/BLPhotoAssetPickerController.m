@@ -7,7 +7,6 @@
 //
 
 #import "BLPhotoAssetPickerController.h"
-#import "Constants.h"
 
 #define kPopoverContentSize CGSizeMake(UI_SCREEN_WIDTH, 480)
 

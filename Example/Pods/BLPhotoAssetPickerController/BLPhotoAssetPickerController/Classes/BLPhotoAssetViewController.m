@@ -15,9 +15,6 @@
 #import "POPSpringAnimation.h"
 #import "MWPhotoBrowser.h"
 #import "MBProgressHUD+Add.h"
-#import "Constants.h"
-#import <Masonry/Masonry.h>
-#import "UIImage+MultipleImagePicker.h"
 
 @interface BLPhotoAssetViewController () <MWPhotoBrowserDelegate>
 

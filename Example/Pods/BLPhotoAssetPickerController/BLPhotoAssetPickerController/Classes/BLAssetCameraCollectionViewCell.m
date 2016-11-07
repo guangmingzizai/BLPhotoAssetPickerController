@@ -7,9 +7,6 @@
 //
 
 #import "BLAssetCameraCollectionViewCell.h"
-#import "Constants.h"
-#import <Masonry/Masonry.h>
-#import "UIImage+MultipleImagePicker.h"
 
 @implementation BLAssetCameraCollectionViewCell
 

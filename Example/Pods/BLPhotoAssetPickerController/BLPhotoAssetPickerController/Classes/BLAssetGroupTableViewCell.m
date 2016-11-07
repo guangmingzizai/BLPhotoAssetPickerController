@@ -10,9 +10,6 @@
 #import <AssetsLibrary/AssetsLibrary.h>
 #import <Photos/Photos.h>
 #import "BLPhotoDataCenter.h"
-#import <Masonry/Masonry.h>
-#import "UIImage+MultipleImagePicker.h"
-#import "Constants.h"
 
 #define kThumbnailLength    (UI_SCREEN_WIDTH/3 -36/3)
 

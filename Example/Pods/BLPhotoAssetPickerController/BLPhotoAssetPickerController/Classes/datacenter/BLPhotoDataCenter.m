@@ -16,7 +16,6 @@
 #import <Photos/Photos.h>
 #import "PHAssetCollection+BLPhotoUtils.h"
 #import "ImageUtils.h"
-#import "Constants.h"
 
 @implementation BLPhotoDataCenter {
 //iOS7

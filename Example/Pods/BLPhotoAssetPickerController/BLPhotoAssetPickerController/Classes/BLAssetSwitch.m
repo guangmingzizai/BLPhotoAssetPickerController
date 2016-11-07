@@ -7,8 +7,6 @@
 //
 
 #import "BLAssetSwitch.h"
-#import <Masonry/Masonry.h>
-#import "UIImage+MultipleImagePicker.h"
 
 @implementation BLAssetSwitch {
     UIView *_titleView;

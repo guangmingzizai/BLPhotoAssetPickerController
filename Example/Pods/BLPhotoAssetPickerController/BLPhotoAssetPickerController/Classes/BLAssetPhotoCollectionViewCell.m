@@ -11,8 +11,6 @@
 #import "MBProgressHUD+Add.h"
 #import "BLPhotoUtils.h"
 #import <pop/POPSpringAnimation.h>
-#import <Masonry/Masonry.h>
-#import "UIImage+MultipleImagePicker.h"
 
 #define kThumbnailLength    (UI_SCREEN_WIDTH/3 -36/3)
 
