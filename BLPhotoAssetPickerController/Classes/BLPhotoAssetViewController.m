@@ -44,6 +44,27 @@
     NSMutableDictionary *_originalRepresentationPhotoIndexToPhotoIndex;//大图Index:小图index
 }
 
+- (instancetype)initWithNibName:(nullable NSString *)nibNameOrNil bundle:(nullable NSBundle *)nibBundleOrNil {
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    if (self) {
+        [self _commonInit];
+    }
+    return self;
+}
+
+- (nullable instancetype)initWithCoder:(NSCoder *)aDecoder {
+    self = [super initWithCoder:aDecoder];
+    if (self) {
+        [self _commonInit];
+    }
+    return self;
+}
+
+- (void)_commonInit {
+    self.cameraEnable = YES;
+    self.maxSelectionNum = 9;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -57,12 +78,6 @@
     [self setUpUI];
     [self setPhotoGroupDatasoureAndPhotoPreviewDatasource];
 }
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
 
 #pragma mark - UI
 
@@ -394,7 +409,7 @@
         if (!cell) {
             cell = [[BLAssetCameraCollectionViewCell alloc]initWithFrame:CGRectMake(0, 0, UI_SCREEN_WIDTH/3-36/3, UI_SCREEN_WIDTH/3-36/3)];
         }
-        if ([BLPhotoUtils getUseCount] +[BLPhotoUtils getWillUseCount] == 9) {
+        if ([BLPhotoUtils getUseCount] +[BLPhotoUtils getWillUseCount] == self.maxSelectionNum) {
             cell.cameraImageView.alpha = 0.5;
             cell.cameraLabel.alpha = 0.5;
         }else {
@@ -512,8 +527,8 @@
 
 #pragma mark - UIImagePickerControllerDelegate
 - (void)openCamera {
-    if ([BLPhotoUtils getUseCount] + [BLPhotoUtils getWillUseCount] == 9) {
-        [MBProgressHUD showTip:[NSString stringWithFormat:@"最多可以使用%ld张照片",(long)(9- [BLPhotoUtils getUseCount])]];
+    if ([BLPhotoUtils getUseCount] + [BLPhotoUtils getWillUseCount] == self.maxSelectionNum) {
+        [MBProgressHUD showTip:[NSString stringWithFormat:@"最多可以使用%ld张照片",(long)(self.maxSelectionNum - [BLPhotoUtils getUseCount])]];
     } else {
         UIImagePickerController * cameraController = [[UIImagePickerController alloc] init];
         cameraController.delegate = self;
@@ -561,7 +576,7 @@
     _previewLabel.userInteractionEnabled = YES;
     
     //数量够的情况下 置下相机和下面文字的透明度为50%
-    if ([BLPhotoUtils getUseCount] + [BLPhotoUtils getWillUseCount] == 9 && self.cameraEnable) {
+    if ([BLPhotoUtils getUseCount] + [BLPhotoUtils getWillUseCount] == self.maxSelectionNum && self.cameraEnable) {
         BLAssetCameraCollectionViewCell *cell =(BLAssetCameraCollectionViewCell *)[_photoCollectionView cellForItemAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
         cell.cameraImageView.alpha = 0.5;
         cell.cameraImageView.alpha = 0.5;
@@ -684,10 +699,10 @@
 }
 
 - (BOOL)photoBrowser:(MWPhotoBrowser *)photoBrowser shouldSelectPhotoAtIndex:(NSUInteger)index {
-    if ([BLPhotoUtils getUseCount] + [BLPhotoUtils getWillUseCount] < 9) {
+    if ([BLPhotoUtils getUseCount] + [BLPhotoUtils getWillUseCount] < self.maxSelectionNum) {
         return YES;
     } else {
-        [MBProgressHUD showTip:[NSString stringWithFormat:@"最多可以使用%ld张照片",(long)(9- [BLPhotoUtils getUseCount])]];
+        [MBProgressHUD showTip:[NSString stringWithFormat:@"最多可以使用%ld张照片",(long)(self.maxSelectionNum - [BLPhotoUtils getUseCount])]];
         return NO;
     }
 }

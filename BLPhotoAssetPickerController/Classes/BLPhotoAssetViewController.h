@@ -16,5 +16,6 @@
 @property(nonatomic, strong) ALAssetsLibrary *assetsLibrary;
 @property(nonatomic, strong) NSMutableArray *groups;
 @property(nonatomic, assign) BOOL cameraEnable;
+@property(nonatomic, assign) NSInteger maxSelectionNum;
 
 @end
