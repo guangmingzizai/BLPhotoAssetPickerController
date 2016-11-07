@@ -1,6 +1,7 @@
 #import <UIKit/UIKit.h>
 
 #import "MBProgressHUD+Add.h"
+#import "UIImage+MultipleImagePicker.h"
 #import "UIWindow+BLUtility.h"
 #import "BLAssetCameraCollectionViewCell.h"
 #import "BLAssetGroupTableViewCell.h"

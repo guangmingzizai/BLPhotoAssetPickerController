@@ -566,6 +566,10 @@
 
 #pragma mark - BLAssetPhotoCollectionViewCellDelegate
 
+- (NSInteger)maxSeletionNum {
+    return _maxSelectionNum;
+}
+
 - (void)putCellSelectedAtIndexPath:(NSIndexPath *)indexPath {
     [_chooseIndexArray addObject:indexPath];
     _choseCountLabel.text = [NSString stringWithFormat:@"%ld", (long) _chooseIndexArray.count];

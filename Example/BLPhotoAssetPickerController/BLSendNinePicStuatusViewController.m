@@ -32,6 +32,7 @@ static NSString *QiniuBucketName = @"img-bilin";
 @property (nonatomic, weak) MBProgressHUD *lengthExccedHUD;
 @property (nonatomic, strong) NSMutableArray *systemTags;
 @property (nonatomic, strong) UITextView *statusTextView;
+@property (nonatomic, assign) NSInteger maxSelectionNum;
 
 @end
 
@@ -62,6 +63,7 @@ static NSString *QiniuBucketName = @"img-bilin";
     _statusTextView.text = self.defaultContent;
     [self textViewDidChange:_statusTextView];
     [_statusTextView becomeFirstResponder];
+    self.maxSelectionNum = 4;
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -290,9 +292,11 @@ static NSString *QiniuBucketName = @"img-bilin";
 - (void)addPicNineStatus {
     [self.view endEditing:YES];
     BLPhotoAssetViewController *assetViewController = [[BLPhotoAssetViewController alloc] init];
+    assetViewController.maxSelectionNum = self.maxSelectionNum;
+    assetViewController.cameraEnable = NO;
     BLPhotoAssetPickerController *pickerController = [[BLPhotoAssetPickerController alloc] initWithRootViewController:assetViewController];
     pickerController.assetDelegate = self;
-    if(_dataSource.count < 9) {
+    if(_dataSource.count < self.maxSelectionNum) {
         [BLPhotoUtils setUseCount:_dataSource.count - 1];
         [BLPhotoUtils setWillUseCount:0];
     }else {
@@ -446,7 +450,7 @@ static NSString *QiniuBucketName = @"img-bilin";
         for (int i = 0; i < array.count; i++) {
             [_dataSource addObject:[array objectAtIndex:i]];
         }
-        if(_dataSource.count < 9) {
+        if(_dataSource.count < self.maxSelectionNum) {
             [_dataSource addObject:@"DEFAULT_ADD"];
         }
        
@@ -521,7 +525,7 @@ static NSString *QiniuBucketName = @"img-bilin";
             
             [_dataSource addObject:image];
             
-            if(_dataSource.count < 9) {
+            if(_dataSource.count < self.maxSelectionNum) {
                 [_dataSource addObject:@"DEFAULT_ADD"];
             }
            
@@ -539,7 +543,7 @@ static NSString *QiniuBucketName = @"img-bilin";
         fetchData = 1;
         [_dataSource addObject:image];
         
-        if(_dataSource.count < 9) {
+        if(_dataSource.count < self.maxSelectionNum) {
             [_dataSource addObject:@"DEFAULT_ADD"];
         }
        

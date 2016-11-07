@@ -12,8 +12,8 @@
 
 @protocol BLAssetPhotoCollectionViewCellDelegate <NSObject>
 
+- (NSInteger)maxSeletionNum;
 - (void)putCellSelectedAtIndexPath:(NSIndexPath *)indexPath;
-
 - (void)removeCellSelectedAtIndexPath:(NSIndexPath *)indexPath;
 
 @end

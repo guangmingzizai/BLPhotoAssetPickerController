@@ -79,12 +79,11 @@
             }
             break;
         case BLPhotoChooseUnSelected:
-            [BLPhotoUtils setWillUseCount:([BLPhotoUtils getWillUseCount] + 1)];
-            if ([BLPhotoUtils getWillUseCount] + [BLPhotoUtils getUseCount] == 10) {
-                [BLPhotoUtils setWillUseCount:([BLPhotoUtils getWillUseCount] - 1)];
-                _outofChooseHud = [MBProgressHUD showHUDInKeyWindowWithImage:nil text:[NSString stringWithFormat:@"最多可以选择%ld张照片",(long)(9-[BLPhotoUtils getUseCount])] duration:1];
+            if ([BLPhotoUtils getWillUseCount] + [BLPhotoUtils getUseCount] == [self _maxSelectionNum]) {
+                _outofChooseHud = [MBProgressHUD showHUDInKeyWindowWithImage:nil text:[NSString stringWithFormat:@"最多可以选择%ld张照片",(long)([self _maxSelectionNum] - [BLPhotoUtils getUseCount])] duration:1];
                 return;
             }
+            [BLPhotoUtils setWillUseCount:([BLPhotoUtils getWillUseCount] + 1)];
             _chooseStatus = BLPhotoChooseSelectd;
             _chooseImageView.image = [UIImage _imageForName:@"status_pic_selected" inBundle:[NSBundle bundleForClass:[self class]]];
             //add animation
@@ -102,5 +101,12 @@
     }
 }
 
+- (NSInteger)_maxSelectionNum {
+    if ([self.collectionViewDelegate respondsToSelector:@selector(maxSeletionNum)]) {
+        return [self.collectionViewDelegate maxSeletionNum];
+    } else {
+        return 9;
+    }
+}
 
 @end
