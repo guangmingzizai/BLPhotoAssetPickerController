@@ -2,5 +2,6 @@
 #import <UIKit/UIKit.h>
 #import "Constants.h"
 #import "Masonry.h"
+#import "UIImage+MultipleImagePicker.h"
 #endif
 

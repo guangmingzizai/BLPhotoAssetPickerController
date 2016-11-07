@@ -35,7 +35,7 @@
         _chooseView.userInteractionEnabled = YES;
         [_chooseView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(changeSelectPhoto)]];
         
-        _chooseImageView= [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"status_pic_unselect"]];
+        _chooseImageView= [[UIImageView alloc]initWithImage:[UIImage _imageForName:@"status_pic_unselect" inBundle:[NSBundle bundleForClass:[self class]]]];
         _chooseImageView.backgroundColor = [UIColor clearColor];
         _chooseImageView.userInteractionEnabled = YES;
         [_chooseImageView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(changeSelectPhoto)]];
@@ -57,8 +57,6 @@
                 make.size.mas_equalTo(CGSizeMake(22, 22));
             }];
         });
-        
-        
     }
     return self;
 }
@@ -75,7 +73,7 @@
             [BLPhotoUtils setWillUseCount:([BLPhotoUtils getWillUseCount] - 1)];
             _chooseStatus = BLPhotoChooseUnSelected;
             [_chooseImageView.layer removeAllAnimations];
-            _chooseImageView.image = [UIImage imageNamed:@"status_pic_unselect"];
+            _chooseImageView.image = [UIImage _imageForName:@"status_pic_unselect" inBundle:[NSBundle bundleForClass:[self class]]];
             if ([self.collectionViewDelegate respondsToSelector:@selector(removeCellSelectedAtIndexPath:)]) {
                 [self.collectionViewDelegate removeCellSelectedAtIndexPath:self.indexPath];
             }
@@ -88,7 +86,7 @@
                 return;
             }
             _chooseStatus = BLPhotoChooseSelectd;
-            _chooseImageView.image = [UIImage imageNamed:@"status_pic_selected"];
+            _chooseImageView.image = [UIImage _imageForName:@"status_pic_selected" inBundle:[NSBundle bundleForClass:[self class]]];
             //add animation
             [_chooseImageView.layer removeAllAnimations];
             POPSpringAnimation *animation = [POPSpringAnimation animationWithPropertyNamed:kPOPViewScaleXY];
@@ -100,7 +98,6 @@
             if ([self.collectionViewDelegate respondsToSelector:@selector(putCellSelectedAtIndexPath:)]) {
                 [self.collectionViewDelegate putCellSelectedAtIndexPath:self.indexPath];
             }
-            
             break;
     }
 }

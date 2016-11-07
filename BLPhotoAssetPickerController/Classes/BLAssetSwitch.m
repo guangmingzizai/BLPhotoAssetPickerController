@@ -45,7 +45,7 @@
             make.size.mas_equalTo(labelSize);
         }];
         
-        _titleImageView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"status_pic_down"]];
+        _titleImageView = [[UIImageView alloc]initWithImage:[UIImage _imageForName:@"status_pic_down" inBundle:[NSBundle bundleForClass:[self class]]]];
         [_titleView addSubview:_titleImageView];
         [_titleImageView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.right.mas_equalTo(0);
@@ -122,12 +122,5 @@
         make.size.mas_equalTo(CGSizeMake(14, 14));
     }];
 }
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect {
-    // Drawing code
-}
-*/
 
 @end

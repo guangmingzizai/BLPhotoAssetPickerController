@@ -17,4 +17,15 @@
 
 #define iOS_Version [[[UIDevice currentDevice] systemVersion] floatValue]
 
+/*
+ * Short hand NSLocalizedString, doesn't need 2 parameters
+ */
+#define LocalizedString(s) NSLocalizedString(s,s)
+
+/*
+ * LocalizedString with an additionl parameter for formatting
+ */
+#define LocalizedStringWithFormat(s,...) [NSString stringWithFormat:NSLocalizedString(s,s),##__VA_ARGS__]
+
+
 #endif /* Constants_h */

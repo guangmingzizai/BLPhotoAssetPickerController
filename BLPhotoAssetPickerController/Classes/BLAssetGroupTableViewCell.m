@@ -47,7 +47,7 @@
         }];
         
         _groupPicCountLabel = [[UILabel alloc]init];
-        _groupPicCountLabel.text = @"98123";
+        _groupPicCountLabel.text = @"0";
         _groupPicCountLabel.textColor = UIColorFromRGB(0x252525);
         _groupPicCountLabel.font = [UIFont systemFontOfSize:10];
         _groupPicCountLabel.backgroundColor = [UIColor clearColor];

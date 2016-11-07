@@ -75,7 +75,7 @@
 }
 
 - (void)setNavigationAttachView {
-    UIBarButtonItem *cancelButton = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"custom_nav_back_icon"] style:UIBarButtonItemStylePlain target:self action:@selector(cancelChoose)];
+    UIBarButtonItem *cancelButton = [[UIBarButtonItem alloc]initWithImage:[UIImage _imageForName:@"custom_nav_back_icon" inBundle:[NSBundle bundleForClass:[self class]]] style:UIBarButtonItemStylePlain target:self action:@selector(cancelChoose)];
     self.navigationItem.leftBarButtonItem = cancelButton;
   
     NSString *title = @"longlong album name";
@@ -281,7 +281,7 @@
     if ([pickNav.assetDelegate respondsToSelector:@selector(assetPickerController:didFinishPickingAssets:)]) {
         NSMutableArray *backAsset = [NSMutableArray array];
         for (int i = 0; i < _chooseIndexArray.count; i++) {
-            [backAsset addObject:[_collectionDataSource objectAtIndex:((NSIndexPath *)_chooseIndexArray[i]).row - 1]];
+            [backAsset addObject:[_collectionDataSource objectAtIndex:((NSIndexPath *)_chooseIndexArray[i]).row - (self.cameraEnable ? 1 : 0)]];
         }
         [pickNav.assetDelegate assetPickerController:(BLPhotoAssetPickerController *)self.navigationController didFinishPickingAssets:backAsset];
     }
@@ -389,7 +389,7 @@
 #pragma mark - UICollection Delegate
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath.row == 0) {
+    if (indexPath.row == 0 && self.cameraEnable) {
         BLAssetCameraCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"reuseDefault" forIndexPath:indexPath];
         if (!cell) {
             cell = [[BLAssetCameraCollectionViewCell alloc]initWithFrame:CGRectMake(0, 0, UI_SCREEN_WIDTH/3-36/3, UI_SCREEN_WIDTH/3-36/3)];
@@ -411,12 +411,12 @@
         cell.collectionViewDelegate = self;
         if ([self indexIsSelected:indexPath]) {
             cell.chooseStatus = BLPhotoChooseSelectd;
-            cell.chooseImageView.image = [UIImage imageNamed:@"status_pic_selected"];
+            cell.chooseImageView.image = [UIImage _imageForName:@"status_pic_selected" inBundle:[NSBundle bundleForClass:[self class]]];
         }else {
             cell.chooseStatus = BLPhotoChooseUnSelected;
-            cell.chooseImageView.image = [UIImage imageNamed:@"status_pic_unselect"];
+            cell.chooseImageView.image = [UIImage _imageForName:@"status_pic_unselect" inBundle:[NSBundle bundleForClass:[self class]]];
         }
-        [cell bind:[_collectionDataSource objectAtIndex:indexPath.row - 1]];
+        [cell bind:[_collectionDataSource objectAtIndex:indexPath.row - (self.cameraEnable ? 1 : 0)]];
         return cell;
     }
 }
@@ -426,7 +426,7 @@
     if (_bottomBg.hidden == YES) {
         return 0;
     }else {
-        return _collectionDataSource.count + 1;
+        return _collectionDataSource.count + (self.cameraEnable ? 1 : 0);
     }
 }
 
@@ -435,15 +435,26 @@
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath.row == 0) {
+    if (indexPath.row == 0 && self.cameraEnable) {
         BLAssetCameraCollectionViewCell *cell = (BLAssetCameraCollectionViewCell*)[_photoCollectionView cellForItemAtIndexPath:indexPath];
         cell.coverView.hidden = NO;
-        [self openCamera];
+        
+#if TARGET_IPHONE_SIMULATOR
+        [MBProgressHUD showTip:LocalizedString(@"Camera not available on simulator")];
+#else
+        [self checkCameraPermissions:^(BOOL granted) {
+            if (granted) {
+                [self openCamera];
+            } else {
+                [MBProgressHUD showTip:LocalizedString(@"Camera permissions not granted")];
+            }
+        }];
+#endif
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             cell.coverView.hidden = YES;
         });
     } else {
-        [self bl_browseOriginalRepresentationPhotos:NO fromIndex:indexPath.item - 1];
+        [self bl_browseOriginalRepresentationPhotos:NO fromIndex:indexPath.item - (self.cameraEnable ? 1 : 0)];
     }
 }
 
@@ -516,14 +527,14 @@
     [picker dismissViewControllerAnimated:NO completion:nil];
     UIImage * choosedImage = info[UIImagePickerControllerOriginalImage];
     
-    [BLPhotoUtils setUseCount:[BLPhotoUtils getUseCount] + [BLPhotoUtils getWillUseCount] +1];
+    [BLPhotoUtils setUseCount:[BLPhotoUtils getUseCount] + [BLPhotoUtils getWillUseCount] + 1];
     [BLPhotoUtils setWillUseCount:0];
     
     BLPhotoAssetPickerController *pickNav = (BLPhotoAssetPickerController *)self.navigationController;
     if ([pickNav.assetDelegate respondsToSelector:@selector(assetPickerController:didFinishTakingPhoto:andPickingAssets:)]) {
         NSMutableArray *backAsset = [NSMutableArray array];
         for (int i = 0; i < _chooseIndexArray.count; i++) {
-            [backAsset addObject:[_collectionDataSource objectAtIndex:(((NSIndexPath *)_chooseIndexArray[i]).row -1)]];
+            [backAsset addObject:[_collectionDataSource objectAtIndex:(((NSIndexPath *)_chooseIndexArray[i]).row - (self.cameraEnable ? 1 : 0))]];
         }
         [pickNav.assetDelegate assetPickerController:(BLPhotoAssetPickerController *)self.navigationController didFinishTakingPhoto:choosedImage andPickingAssets:backAsset];
     }
@@ -550,7 +561,7 @@
     _previewLabel.userInteractionEnabled = YES;
     
     //数量够的情况下 置下相机和下面文字的透明度为50%
-    if ([BLPhotoUtils getUseCount] + [BLPhotoUtils getWillUseCount] == 9) {
+    if ([BLPhotoUtils getUseCount] + [BLPhotoUtils getWillUseCount] == 9 && self.cameraEnable) {
         BLAssetCameraCollectionViewCell *cell =(BLAssetCameraCollectionViewCell *)[_photoCollectionView cellForItemAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
         cell.cameraImageView.alpha = 0.5;
         cell.cameraImageView.alpha = 0.5;
@@ -565,9 +576,11 @@
 }
 
 - (void)removeCellSelectedAtIndexPath:(NSIndexPath *)indexPath {
-    BLAssetCameraCollectionViewCell *cell =(BLAssetCameraCollectionViewCell *)[_photoCollectionView cellForItemAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
-    cell.cameraImageView.alpha = 1;
-    cell.cameraImageView.alpha = 1;
+    if (self.cameraEnable) {
+        BLAssetCameraCollectionViewCell *cell =(BLAssetCameraCollectionViewCell *)[_photoCollectionView cellForItemAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
+        cell.cameraImageView.alpha = 1;
+        cell.cameraImageView.alpha = 1;
+    }
     for (int i = 0 ;i<_chooseIndexArray.count ;i++) {
         if (((NSIndexPath*)[_chooseIndexArray objectAtIndex:i]).row == indexPath.row) {
             [_chooseIndexArray removeObjectAtIndex:i];
@@ -600,7 +613,7 @@
     NSUInteger photoIndex = 0;
     if (isPreview) {
         for (NSIndexPath *indexPath in _chooseIndexArray) {
-            id theAsset = _collectionDataSource[indexPath.item-1];
+            id theAsset = _collectionDataSource[indexPath.item - (self.cameraEnable ? 1 : 0)];
             BOOL assetIsValid = NO;
             if ([theAsset isKindOfClass:[PHAsset class]]) {
                 assetIsValid = YES;
@@ -630,7 +643,7 @@
                 [_originalRepresentationPhotos addObject:[MWPhoto photoWithURL:asset.defaultRepresentation.url]];
             }
             if (assetIsValid) {
-                _originalRepresentationPhotoIndexToPhotoIndex[@(photoIndex)] = @(i + 1);
+                _originalRepresentationPhotoIndexToPhotoIndex[@(photoIndex)] = @(i + (self.cameraEnable ? 1 : 0));
                 photoIndex++;
             }
         }
@@ -707,6 +720,52 @@
 
 - (void)photoBrowserDidTappedSelectFinishButton:(MWPhotoBrowser *)photoBrowser {
     [self finishChoosePhoto];
+}
+
+#pragma mark - Helpers
+
+- (void)checkCameraPermissions:(void(^)(BOOL granted))callback
+{
+    AVAuthorizationStatus status = [AVCaptureDevice authorizationStatusForMediaType:AVMediaTypeVideo];
+    if (status == AVAuthorizationStatusAuthorized) {
+        callback(YES);
+        return;
+    } else if (status == AVAuthorizationStatusNotDetermined){
+        [AVCaptureDevice requestAccessForMediaType:AVMediaTypeVideo completionHandler:^(BOOL granted) {
+            callback(granted);
+            return;
+        }];
+    } else {
+        callback(NO);
+    }
+}
+
+- (void)checkPhotosPermissions:(void(^)(BOOL granted))callback
+{
+    if (![PHPhotoLibrary class]) { // iOS 7 support
+        callback(YES);
+        return;
+    }
+    
+    PHAuthorizationStatus status = [PHPhotoLibrary authorizationStatus];
+    if (status == PHAuthorizationStatusAuthorized) {
+        callback(YES);
+        return;
+    } else if (status == PHAuthorizationStatusNotDetermined) {
+        [PHPhotoLibrary requestAuthorization:^(PHAuthorizationStatus status) {
+            if (status == PHAuthorizationStatusAuthorized) {
+                callback(YES);
+                return;
+            }
+            else {
+                callback(NO);
+                return;
+            }
+        }];
+    }
+    else {
+        callback(NO);
+    }
 }
 
 @end

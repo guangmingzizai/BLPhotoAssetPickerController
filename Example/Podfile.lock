@@ -34,7 +34,7 @@ EXTERNAL SOURCES:
     :path: ../
 
 SPEC CHECKSUMS:
-  BLPhotoAssetPickerController: db3d9363e112ac57065acfdbdb9c0f52537a417f
+  BLPhotoAssetPickerController: 776ac3a76933d65f1c7f44fac811e3d74592cf8a
   DACircularProgress: 4dd437c0fc3da5161cb289e07ac449493d41db71
   Masonry: 7c429b56da9d4ee0bbb3ed77a5ea710d6a5df39e
   MBProgressHUD: 1569cf7ace17a8bac47aabfbb8580a49690386d1
