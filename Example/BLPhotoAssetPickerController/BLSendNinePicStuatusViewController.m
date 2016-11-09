@@ -13,8 +13,6 @@
 #import "MBProgressHUD+Add.h"
 #import "ImageUtils.h"
 #import "UITextView+LengthLimit.h"
-#import "BLPhotoAssetPickerController.h"
-#import "BLPhotoAssetViewController.h"
 #import "BLPhotoDataCenter.h"
 #import "BLPhotoUtils.h"
 #import <MWPhotoBrowser_guangmingzizai/MWPhotoBrowser.h>
@@ -291,15 +289,17 @@ static NSString *QiniuBucketName = @"img-bilin";
 
 - (void)addPicNineStatus {
     [self.view endEditing:YES];
-    BLPhotoAssetViewController *assetViewController = [[BLPhotoAssetViewController alloc] init];
-    assetViewController.maxSelectionNum = self.maxSelectionNum;
-    assetViewController.cameraEnable = NO;
-    BLPhotoAssetPickerController *pickerController = [[BLPhotoAssetPickerController alloc] initWithRootViewController:assetViewController];
-    pickerController.assetDelegate = self;
+    BLPhotoAssetPickerController *pickerViewController = [[BLPhotoAssetPickerController alloc] init];
+    pickerViewController.maxSelectionNum = self.maxSelectionNum;
+    pickerViewController.cameraEnable = NO;
+    pickerViewController.delegate = self;
+    
+    BLPhotoAssetNavigationController *pickerNavigationController = [[BLPhotoAssetNavigationController alloc] initWithRootViewController:pickerViewController];
+    
     if(_dataSource.count < self.maxSelectionNum) {
         [BLPhotoUtils setUseCount:_dataSource.count - 1];
         [BLPhotoUtils setWillUseCount:0];
-    }else {
+    } else {
         if ([_dataSource.lastObject isKindOfClass:[NSString class]] && [_dataSource.lastObject isEqualToString:@"DEFAULT_ADD"]) {
             [BLPhotoUtils setUseCount:_dataSource.count - 1];
             [BLPhotoUtils setWillUseCount:0];
@@ -309,7 +309,7 @@ static NSString *QiniuBucketName = @"img-bilin";
         }
     }
     
-    [self presentViewController:pickerController animated:YES completion:nil];
+    [self presentViewController:pickerNavigationController animated:YES completion:nil];
 }
 
 - (void)changeCollectionViewConstrain {
@@ -430,7 +430,7 @@ static NSString *QiniuBucketName = @"img-bilin";
 }
 
 #pragma mark 图片选择器代理方法
-- (void)assetPickerController:(BLPhotoAssetPickerController *)picker didFinishPickingAssets:(NSArray *)assets
+- (void)photoAssetPickerController:(BLPhotoAssetPickerController *)picker didFinishPickingAssets:(NSArray *)assets
 {
     [picker dismissViewControllerAnimated:YES completion:^{
         //fix iOS7.0.3 BUG
@@ -469,7 +469,75 @@ static NSString *QiniuBucketName = @"img-bilin";
             [_uploadHud addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(cancelUploadAlert)]];
         }
     });
+}
+
+- (void)photoAssetPickerController:(BLPhotoAssetPickerController *)picker didFinishTakingPhoto:(UIImage *)image andPickingAssets:(NSArray *)assets {
     
+    [picker dismissViewControllerAnimated:YES completion:^{
+        //fix iOS7.0.3 BUG
+        
+        [self changeCollectionViewConstrain];
+    }];
+    
+    //移除默认的添加
+    if([_dataSource count] >0 && [_dataSource.lastObject isKindOfClass:[NSString class]] && [_dataSource.lastObject isEqualToString:@"DEFAULT_ADD"]) {
+        [_dataSource removeLastObject];
+    }
+    __block NSInteger  fetchData = 0;
+    if (assets!=NULL && assets.count >0) {
+        __block NSMutableArray *array = [NSMutableArray array];
+        
+        [BLPhotoDataCenter getThumbnailDataFromAssets:assets WithBlock:^(NSArray *thumbarray) {
+            array = [NSMutableArray arrayWithArray:thumbarray];
+            fetchData = 1;
+            for (int i = 0; i < array.count; i++) {
+                [_dataSource addObject:[array objectAtIndex:i]];
+            }
+            
+            [_dataSource addObject:image];
+            
+            if(_dataSource.count < self.maxSelectionNum) {
+                [_dataSource addObject:@"DEFAULT_ADD"];
+            }
+            
+            [self cancelUpload];
+            
+            
+            [self changeCollectionViewConstrain];
+            [_statusCollectionView reloadData];
+            
+            
+        } withRequestIDBlock:^(NSArray *requestArray) {
+            _requestImageIdArray = requestArray;
+        }];
+    }else {
+        fetchData = 1;
+        [_dataSource addObject:image];
+        
+        if(_dataSource.count < self.maxSelectionNum) {
+            [_dataSource addObject:@"DEFAULT_ADD"];
+        }
+        
+        [self cancelUpload];
+        
+        
+        [picker dismissViewControllerAnimated:YES completion:^{
+            //fix iOS7.0.3 BUG
+            [self changeCollectionViewConstrain];
+        }];
+        
+        
+        [self changeCollectionViewConstrain];
+        [_statusCollectionView reloadData];
+        
+    }
+    
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 0.5 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+        if (fetchData == 0) {
+            _uploadHud = [MBProgressHUD showProcessTip:@"正在加载..."];
+            [_uploadHud addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(cancelUploadAlert)]];
+        }
+    });
 }
 
 - (void)cancelUploadAlert {
@@ -498,75 +566,6 @@ static NSString *QiniuBucketName = @"img-bilin";
     _requestImageIdArray = nil;
     [BLPhotoUtils setUseCount:0];
     [BLPhotoUtils setWillUseCount:0];
-}
-
-- (void)assetPickerController:(BLPhotoAssetPickerController *)picker didFinishTakingPhoto:(UIImage *)image andPickingAssets:(NSArray *)assets {
-    
-    [picker dismissViewControllerAnimated:YES completion:^{
-        //fix iOS7.0.3 BUG
-        
-        [self changeCollectionViewConstrain];
-    }];
-    
-    //移除默认的添加
-    if([_dataSource count] >0 && [_dataSource.lastObject isKindOfClass:[NSString class]] && [_dataSource.lastObject isEqualToString:@"DEFAULT_ADD"]) {
-        [_dataSource removeLastObject];
-    }
-    __block NSInteger  fetchData = 0;
-    if (assets!=NULL && assets.count >0) {
-        __block NSMutableArray *array = [NSMutableArray array];
-        
-        [BLPhotoDataCenter getThumbnailDataFromAssets:assets WithBlock:^(NSArray *thumbarray) {
-            array = [NSMutableArray arrayWithArray:thumbarray];
-            fetchData = 1;
-            for (int i = 0; i < array.count; i++) {
-                [_dataSource addObject:[array objectAtIndex:i]];
-            }
-            
-            [_dataSource addObject:image];
-            
-            if(_dataSource.count < self.maxSelectionNum) {
-                [_dataSource addObject:@"DEFAULT_ADD"];
-            }
-           
-            [self cancelUpload];
-
-            
-            [self changeCollectionViewConstrain];
-            [_statusCollectionView reloadData];
-
-            
-        } withRequestIDBlock:^(NSArray *requestArray) {
-            _requestImageIdArray = requestArray;
-        }];
-    }else {
-        fetchData = 1;
-        [_dataSource addObject:image];
-        
-        if(_dataSource.count < self.maxSelectionNum) {
-            [_dataSource addObject:@"DEFAULT_ADD"];
-        }
-       
-        [self cancelUpload];
-
-        
-        [picker dismissViewControllerAnimated:YES completion:^{
-            //fix iOS7.0.3 BUG
-            [self changeCollectionViewConstrain];
-        }];
-
-        
-        [self changeCollectionViewConstrain];
-        [_statusCollectionView reloadData];
-        
-    }
-    
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 0.5 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
-        if (fetchData == 0) {
-            _uploadHud = [MBProgressHUD showProcessTip:@"正在加载..."];
-            [_uploadHud addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(cancelUploadAlert)]];
-        }
-    });
 }
 
 #pragma mark - Browse Big Photo

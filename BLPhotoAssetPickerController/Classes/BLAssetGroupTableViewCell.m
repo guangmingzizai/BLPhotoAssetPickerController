@@ -77,13 +77,10 @@
 
 #pragma mark - Bind Data
 
-- (void)bind:(NSObject *)groups atIndex:(NSIndexPath *)indexPath {
-   
-    
-    
+- (void)bind:(PHAssetCollection *)groups atIndex:(NSIndexPath *)indexPath {
     if (indexPath.row%2 == 0) {
         self.cellBgColor = 0xffffff;
-    }else {
+    } else {
         self.cellBgColor = 0xfbfbfb;
     }
     
