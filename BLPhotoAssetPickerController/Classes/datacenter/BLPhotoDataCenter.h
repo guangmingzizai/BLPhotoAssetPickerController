@@ -21,11 +21,12 @@
 + (void)bindGroupcellData:(PHAssetCollection *)groups withBlock:(void (^) (NSString *title ,NSString *count ,UIImage *posterImage))block;
 
 //转换一个相册的数据源
-+ (void)converToPhotoDataSource:(PHAssetCollection *)dataSource withBlock:(void (^) (NSArray *))block;
++ (void)converToPhotoDataSource:(PHAssetCollection *)dataSource withBlock:(void (^) (NSArray<PHAsset *> *))block;
 //绑定一个相册相片cell的数据
 + (void)bindPhotoCellData:(PHAsset *)asset withBlock:(void (^) (UIImage *thumbnailImage))block;
 
-//从一组phasset(alasset)获取缩略图集合
-+ (void)getThumbnailDataFromAssets:(NSArray<PHAsset *> *)assets WithBlock:(void (^) (NSArray<UIImage *> *array))thumbBlock withRequestIDBlock:(void (^) (NSArray<NSNumber *> *requestArray))requestIdBlock;
+// maxSize: (800, 1280), for upload images
++ (void)requestImagesForAssets:(NSArray<PHAsset *> *)assets completionBlock:(void (^) (NSArray<UIImage *> *array))completionBlock requestIDsBlock:(void (^) (NSArray<NSNumber *> *requestArray))requestIDsBlock;
++ (void)requestImagesForAssets:(NSArray<PHAsset *> *)assets maxSize:(CGSize)maxSize completionBlock:(void (^) (NSArray<UIImage *> *array))completionBlock requestIDsBlock:(void (^) (NSArray<NSNumber *> *requestArray))requestIDsBlock;
 
 @end

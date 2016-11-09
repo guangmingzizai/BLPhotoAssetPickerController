@@ -339,7 +339,8 @@
                     }
                 }];
                 [_photoGroupTableView reloadData];
-                [BLPhotoDataCenter converToPhotoDataSource:[_tableDataSource firstObject] withBlock:^(NSArray * array) {
+
+                [BLPhotoDataCenter converToPhotoDataSource:[_tableDataSource firstObject] withBlock:^(NSArray<PHAsset *> * array) {
                     _collectionDataSource = [NSMutableArray arrayWithArray:array];
                     _bottomBg.hidden = NO;
                     [_photoCollectionView reloadData];

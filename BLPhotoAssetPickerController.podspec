@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'BLPhotoAssetPickerController'
-  s.version          = '0.1.0'
+  s.version          = '0.1.1'
   s.summary          = 'A image picker supports multiple selection.'
   s.description      = <<-DESC
   BLPhotoAssetPickerController can select multiple images from photo album, and support take camera. You can customize the selection photo num.
@@ -28,7 +28,7 @@ Pod::Spec.new do |s|
   s.author           = { 'guangmingzizai' => 'guangmingzizai@qq.com' }
   s.source           = {
     :git => 'https://github.com/guangmingzizai/BLPhotoAssetPickerController.git',
-    :tag => '0.1.0'
+    :tag => '0.1.1'
   }
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 

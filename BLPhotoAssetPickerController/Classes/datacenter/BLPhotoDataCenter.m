@@ -153,7 +153,7 @@
 
 #pragma mark - converToPhotoDataSource
 //转换一个相册的数据源
-+ (void)converToPhotoDataSource:(PHAssetCollection *)dataSource withBlock:(void (^) (NSArray *))block {
++ (void)converToPhotoDataSource:(PHAssetCollection *)dataSource withBlock:(void (^) (NSArray<PHAsset *> *))block {
     NSMutableArray *convertSource = [[NSMutableArray alloc] init];
     PHFetchOptions *fetchOptions = [PHFetchOptions new];
     fetchOptions.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"creationDate" ascending:NO]];
@@ -179,9 +179,12 @@
     }];
 }
 
-//从一组phasset(alasset)获取缩略图集合
-+ (void)getThumbnailDataFromAssets:(NSArray<PHAsset *> *)assets WithBlock:(void (^) (NSArray<UIImage *> *array))thumbBlock withRequestIDBlock:(void (^) (NSArray<NSNumber *> *requestArray))requestIdBlock {
-    NSMutableArray<UIImage *> *thumbArray = [NSMutableArray array];
++ (void)requestImagesForAssets:(NSArray<PHAsset *> *)assets completionBlock:(void (^) (NSArray<UIImage *> *array))completionBlock requestIDsBlock:(void (^) (NSArray<NSNumber *> *requestArray))requestIDsBlock {
+    [self requestImagesForAssets:assets maxSize:CGSizeMake(UPLOAD_IMAGE_WIDTH, UPLOAD_IMAGE_HEIGHT) completionBlock:completionBlock requestIDsBlock:requestIDsBlock];
+}
+
++ (void)requestImagesForAssets:(NSArray<PHAsset *> *)assets maxSize:(CGSize)maxSize completionBlock:(void (^) (NSArray<UIImage *> *array))completionBlock requestIDsBlock:(void (^) (NSArray<NSNumber *> *requestArray))requestIDsBlock {
+    NSMutableArray<UIImage *> *imageArray = [NSMutableArray array];
     NSMutableArray<NSNumber *> *requestArray = [NSMutableArray array];
     NSMutableDictionary *assetImageDic = [NSMutableDictionary dictionary];
     for (volatile int i = 0; i < assets.count; i ++) {
@@ -191,20 +194,20 @@
         options.deliveryMode = PHImageRequestOptionsDeliveryModeHighQualityFormat;
         options.networkAccessAllowed = YES;
         
-        PHImageRequestID requestID = [[PHImageManager defaultManager] requestImageForAsset:(PHAsset *)asset targetSize:[[BLPhotoDataCenter sharedInstance] caculateTargetSize:CGSizeMake(asset.pixelWidth, asset.pixelHeight)] contentMode:PHImageContentModeAspectFit options:options resultHandler:^(UIImage * _Nullable result, NSDictionary * _Nullable info) {
+        PHImageRequestID requestID = [[PHImageManager defaultManager] requestImageForAsset:asset targetSize:[[BLPhotoDataCenter sharedInstance] caculateTargetSize:CGSizeMake(asset.pixelWidth, asset.pixelHeight)] contentMode:PHImageContentModeAspectFit options:options resultHandler:^(UIImage * _Nullable result, NSDictionary * _Nullable info) {
             if (result) {
                 assetImageDic[@(i)] = result;
                 if (assetImageDic.count == assets.count) {
                     for (int j = 0; j < assets.count; j++) {
-                        [thumbArray addObject:assetImageDic[@(j)]];
+                        [imageArray addObject:assetImageDic[@(j)]];
                     }
-                    thumbBlock(thumbArray);
+                    completionBlock(imageArray);
                 }
             }
         }];
         [requestArray addObject:[NSNumber numberWithInt:(requestID)]];
         if (requestArray.count == assets.count) {
-            requestIdBlock(requestArray);
+            requestIDsBlock(requestArray);
         }
     }
 }
