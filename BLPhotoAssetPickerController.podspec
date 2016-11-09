@@ -8,24 +8,28 @@
 
 Pod::Spec.new do |s|
   s.name             = 'BLPhotoAssetPickerController'
-  s.version          = '0.1.0'
+  s.version          = '0.1.1'
   s.summary          = 'A image picker supports multiple selection.'
-
-# This description is used to generate tags and improve search results.
-#   * Think: What does it do? Why did you write it? What is the focus?
-#   * Try to keep it short, snappy and to the point.
-#   * Write the description between the DESC delimiters below.
-#   * Finally, don't worry about the indent, CocoaPods strips it!
-
   s.description      = <<-DESC
-TODO: Add long description of the pod here.
+  BLPhotoAssetPickerController can select multiple images from photo album, and support take camera. You can customize the selection photo num.
+  It's design has many defects, but I have no time to refactor it.
+  Since my work is so busy, I can't promise to maintain this library.
                        DESC
 
   s.homepage         = 'https://github.com/guangmingzizai/BLPhotoAssetPickerController'
-  # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
+  s.screenshots     = [
+    'https://github.com/guangmingzizai/BLPhotoAssetPickerController/raw/master/Screenshots/BLPhotoAssetPickerController1t.png?raw=true',
+    'https://github.com/guangmingzizai/BLPhotoAssetPickerController/raw/master/Screenshots/BLPhotoAssetPickerController2t.png?raw=true',
+    'https://github.com/guangmingzizai/BLPhotoAssetPickerController/raw/master/Screenshots/BLPhotoAssetPickerController3t.png?raw=true',
+    'https://github.com/guangmingzizai/BLPhotoAssetPickerController/raw/master/Screenshots/BLPhotoAssetPickerController4t.png?raw=true',
+    'https://github.com/guangmingzizai/BLPhotoAssetPickerController/raw/master/Screenshots/BLPhotoAssetPickerController5t.png?raw=true',
+  ]
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'guangmingzizai' => 'guangmingzizai@qq.com' }
-  s.source           = { :git => 'https://github.com/guangmingzizai/BLPhotoAssetPickerController.git', :tag => s.version.to_s }
+  s.source           = {
+    :git => 'https://github.com/guangmingzizai/BLPhotoAssetPickerController.git',
+    :tag => '0.1.1'
+  }
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
   s.ios.deployment_target = '8.0'
@@ -35,6 +39,7 @@ TODO: Add long description of the pod here.
   s.resource_bundles = {
     'BLPhotoAssetPickerController' => ['BLPhotoAssetPickerController/Assets/*.png']
   }
+  s.requires_arc = true
 
   # s.public_header_files = 'Pod/Classes/**/*.h'
     s.frameworks = 'UIKit', 'AssetsLibrary', 'QuartzCore'

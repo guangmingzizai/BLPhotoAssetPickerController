@@ -40,7 +40,6 @@
 		19CAA4E717375A6B50B3A2D29C0FB77C /* MWMaskView.m in Sources */ = {isa = PBXBuildFile; fileRef = D8B601BA5F2E749FD03A1AD36D6BF0A0 /* MWMaskView.m */; };
 		19D787A8A82420545688FC5C1C0DE0E7 /* MBProgressHUD+Add.h in Headers */ = {isa = PBXBuildFile; fileRef = 282F7496FE1CEDB409B6FDD86C1C0130 /* MBProgressHUD+Add.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1AA24833E81C770000ED4965917F502E /* SDWebImageCompat.h in Headers */ = {isa = PBXBuildFile; fileRef = B2E2361B2481DBB484C306FA2749B44F /* SDWebImageCompat.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		1ABA5DD53C03CFA8861E384B51A83B48 /* BLPhotoAssetViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 3794202864576906346D72DE05B56D9C /* BLPhotoAssetViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1C4BE5F5F5A9E26EF9F1EE9EA359E85E /* POPDefines.h in Headers */ = {isa = PBXBuildFile; fileRef = 8B36E141D7FA4C46F6CB0BC299659DA1 /* POPDefines.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1CC3525D884D45038F3D5A3B5454F4F0 /* UIImage+GIF.h in Headers */ = {isa = PBXBuildFile; fileRef = BE16E11B8748A2AB55C0890C416F0BA0 /* UIImage+GIF.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1D1189001CA4D8D21788120A32BE4C91 /* PlayButtonOverlayLargeTap@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 81C9BEB2FCE70CE52BF2391BF40FBDEF /* PlayButtonOverlayLargeTap@3x.png */; };
@@ -99,7 +98,6 @@
 		4718BF76F9F5D10FF0B6587833DA4598 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55AB7DAA28319013F76C9F44FA49F3DC /* QuartzCore.framework */; };
 		47FA1BF6ED99E86C57582E3098DB1DF6 /* UIBarButtonItemArrowRight@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4E1686FEC3E7561368419F6D2AC5C4A3 /* UIBarButtonItemArrowRight@3x.png */; };
 		48BF0F38A2086ADBE993842BD1E1BA19 /* ImageSelectedSmallOff@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AE02B72B581967D905E717FAED16CE4C /* ImageSelectedSmallOff@2x.png */; };
-		49A714EC195021812AF1802590C12EBE /* BLPhotoAssetPickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 13CBFEBF58EABF57A8690A6E12C1093D /* BLPhotoAssetPickerController.m */; };
 		4C78D455A0F1E08AFA145AB0623AC2F7 /* MWCommon.h in Headers */ = {isa = PBXBuildFile; fileRef = 7AC86A12C323561C679EF614D16470C7 /* MWCommon.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4F0B5A7DFA23D81E29FA91BF6F6853C4 /* POPAnimator.mm in Sources */ = {isa = PBXBuildFile; fileRef = 27D62BEA562F4E51A257A4CA38ACA511 /* POPAnimator.mm */; };
 		4F49EB357052D10836FF30ADBDF4BDE5 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4F8CA5ED99F996FAA444993D6E67B2F /* ImageIO.framework */; };
@@ -137,10 +135,13 @@
 		68E044BFC08537733559EA741608E490 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 374D81F44DF49C81A290F7B1FC3424D1 /* MBProgressHUD.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
 		6A1C8D14BB679946038ABD5D6FECBE74 /* ImageSelectedOn.png in Resources */ = {isa = PBXBuildFile; fileRef = 65FBA1C0991DF5991C4582AC286E44BE /* ImageSelectedOn.png */; };
 		6A4C3AFE49E8D1599F0DFBD1171DC448 /* UIActionSheet+Blocks.h in Headers */ = {isa = PBXBuildFile; fileRef = 8CF0F832C11A55BDEBF8C149ED2BDCCF /* UIActionSheet+Blocks.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		6B38D662C8E93BC093B456174DE57D09 /* BLPhotoAssetPickerController.h in Headers */ = {isa = PBXBuildFile; fileRef = E52896D459997982315709C04D2D720F /* BLPhotoAssetPickerController.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6BEE1D053E14D37B7C2FA36D4EB46A37 /* UIAlertView_Blocks.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D50BE2461988EA6E077A82EF1B7BFF5 /* UIAlertView_Blocks.framework */; };
 		6C15DEB681585D1886CCE06278531392 /* SDImageCache.h in Headers */ = {isa = PBXBuildFile; fileRef = 155DBF1D5BD73A0109B2805A8C462E52 /* SDImageCache.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6C632EE9B854F88104F45C2553E45CE8 /* UIBarButtonItemArrowRight.png in Resources */ = {isa = PBXBuildFile; fileRef = 41FF86BE4953AAB0725FFBB51907D734 /* UIBarButtonItemArrowRight.png */; };
+		6C63CA131DD2D395004E53BF /* BLPhotoAssetNavigationController.h in Headers */ = {isa = PBXBuildFile; fileRef = 6C63CA111DD2D395004E53BF /* BLPhotoAssetNavigationController.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		6C63CA141DD2D395004E53BF /* BLPhotoAssetNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C63CA121DD2D395004E53BF /* BLPhotoAssetNavigationController.m */; };
+		6C63CA171DD2D57E004E53BF /* BLPhotoAssetPickerController.h in Headers */ = {isa = PBXBuildFile; fileRef = 6C63CA151DD2D57E004E53BF /* BLPhotoAssetPickerController.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		6C63CA181DD2D57E004E53BF /* BLPhotoAssetPickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C63CA161DD2D57E004E53BF /* BLPhotoAssetPickerController.m */; };
 		6D0B81C713773E9E747520FE89E55D6B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1073DA32C0A8A52D426C5B674E08831D /* Foundation.framework */; };
 		6D1841BB1D092E14E81323DC8082A0EB /* MWInbilinSelectionToolBar.h in Headers */ = {isa = PBXBuildFile; fileRef = 9D89EC601A4F5AC7DE3CED8A932AB637 /* MWInbilinSelectionToolBar.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6D4F2024D126DE2DB86CBF75183A1572 /* VideoOverlay.png in Resources */ = {isa = PBXBuildFile; fileRef = 240654F25004D1BD68B3CC7D74C9B676 /* VideoOverlay.png */; };
@@ -207,7 +208,6 @@
 		A7F36B9FF4C4A4F55F9B1BAD3DF3F5A3 /* POPAnimationRuntime.mm in Sources */ = {isa = PBXBuildFile; fileRef = 43C01FA7FFEDA04DA6DE5091BF2EE93E /* POPAnimationRuntime.mm */; };
 		A8688838F7200BEAFBB088670AFFCED9 /* MASLayoutConstraint.m in Sources */ = {isa = PBXBuildFile; fileRef = D46048E933FE3E94686DE3E909AC2C84 /* MASLayoutConstraint.m */; };
 		A8988B1734F3197ED7C9880B34F5ACA8 /* Masonry-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = B7202467192A009ADE18B21ECCADD05D /* Masonry-dummy.m */; };
-		A8ABB38650021C3D12FF650F97713743 /* BLPhotoAssetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A983FE53E083DAA7F1C73326A1608E5 /* BLPhotoAssetViewController.m */; };
 		AA556C2B33745FAC0A8055282B069D63 /* POPDecayAnimation.h in Headers */ = {isa = PBXBuildFile; fileRef = 51B6AEA9F899C42BCAFC51263C240A42 /* POPDecayAnimation.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		ABCA91D1F6A9D59241E140A85C8648B5 /* MWInbilinNavigationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = E74E36D86F30760E8A831164987B5EC6 /* MWInbilinNavigationBar.m */; };
 		AC26614D91E5B96CA915861230F176DC /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E09BC200DAF6E6150CAB939ABE3B563 /* MediaPlayer.framework */; };
@@ -519,7 +519,6 @@
 		094A4F7D11B9E1089EC571AD820BC578 /* SDWebImage.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SDWebImage.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		09C487942E50C01430CA45E14898D54E /* MWPhoto.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MWPhoto.m; path = Pod/Classes/MWPhoto.m; sourceTree = "<group>"; };
 		09DB7DB2272721A3E5792DA025CE84F9 /* Pods-BLPhotoAssetPickerController_Example.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-BLPhotoAssetPickerController_Example.modulemap"; sourceTree = "<group>"; };
-		0A983FE53E083DAA7F1C73326A1608E5 /* BLPhotoAssetViewController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = BLPhotoAssetViewController.m; sourceTree = "<group>"; };
 		0BB27CD433B4C2CA59BACAA31F80FF24 /* ResourceBundle-BLPhotoAssetPickerController-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "ResourceBundle-BLPhotoAssetPickerController-Info.plist"; sourceTree = "<group>"; };
 		0BC1312CB18A5C8F009735999C92EB39 /* UIImageView+HighlightedWebCache.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIImageView+HighlightedWebCache.h"; path = "SDWebImage/UIImageView+HighlightedWebCache.h"; sourceTree = "<group>"; };
 		0BEEE40C715AF0E37ADE4020AE74192A /* BLPhotoAssetPickerController-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "BLPhotoAssetPickerController-dummy.m"; sourceTree = "<group>"; };
@@ -530,7 +529,6 @@
 		0F88A71F71403C6B86ACA4C80008B57B /* POPAnimationRuntime.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = POPAnimationRuntime.h; path = pop/POPAnimationRuntime.h; sourceTree = "<group>"; };
 		1073DA32C0A8A52D426C5B674E08831D /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.3.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 		1079E9AE21628019A24D089083FF7424 /* custom_nav_back_icon@2x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; path = "custom_nav_back_icon@2x.png"; sourceTree = "<group>"; };
-		13CBFEBF58EABF57A8690A6E12C1093D /* BLPhotoAssetPickerController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = BLPhotoAssetPickerController.m; sourceTree = "<group>"; };
 		1480AD062C0F26011A00AA82F0E5A8E1 /* MASCompositeConstraint.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MASCompositeConstraint.m; path = Masonry/MASCompositeConstraint.m; sourceTree = "<group>"; };
 		14AE70FFBCDFCEDA8E969259C55B897E /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1514B046FA68FB9A01096CA4E76A10AE /* POPAnimator.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = POPAnimator.h; path = pop/POPAnimator.h; sourceTree = "<group>"; };
@@ -585,7 +583,6 @@
 		33B0600DD82C52B59BF159D9C5836551 /* MWPhotoBrowser@guangmingzizai.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "MWPhotoBrowser@guangmingzizai.xcconfig"; sourceTree = "<group>"; };
 		35FD6188ACD0E904987204756320B13C /* MWInbilinActionBar.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MWInbilinActionBar.h; path = Pod/Classes/MWInbilinActionBar.h; sourceTree = "<group>"; };
 		374D81F44DF49C81A290F7B1FC3424D1 /* MBProgressHUD.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
-		3794202864576906346D72DE05B56D9C /* BLPhotoAssetViewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = BLPhotoAssetViewController.h; sourceTree = "<group>"; };
 		37A0BB1C9594FD6F7B67608D3642D465 /* LikedActionIcon@2x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "LikedActionIcon@2x.png"; path = "Pod/Assets/LikedActionIcon@2x.png"; sourceTree = "<group>"; };
 		37AA1F94AE9533C97283EB9C606A7A92 /* POPLayerExtras.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = POPLayerExtras.h; path = pop/POPLayerExtras.h; sourceTree = "<group>"; };
 		37F1F2952B49E4B3608F16CD719ED850 /* pop.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = pop.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -650,6 +647,10 @@
 		6867DBC79255B10613EE2E374A1AFDB2 /* UIAlertView+Blocks-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "UIAlertView+Blocks-umbrella.h"; sourceTree = "<group>"; };
 		6B2FD9DBEA891AF4F6972FD251B1C3AE /* UIAlertView+Blocks.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "UIAlertView+Blocks.modulemap"; sourceTree = "<group>"; };
 		6C459D9F2E347AD5B70D9A6EF5147CBC /* UIAlertView+Blocks-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "UIAlertView+Blocks-prefix.pch"; sourceTree = "<group>"; };
+		6C63CA111DD2D395004E53BF /* BLPhotoAssetNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLPhotoAssetNavigationController.h; sourceTree = "<group>"; };
+		6C63CA121DD2D395004E53BF /* BLPhotoAssetNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BLPhotoAssetNavigationController.m; sourceTree = "<group>"; };
+		6C63CA151DD2D57E004E53BF /* BLPhotoAssetPickerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLPhotoAssetPickerController.h; sourceTree = "<group>"; };
+		6C63CA161DD2D57E004E53BF /* BLPhotoAssetPickerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BLPhotoAssetPickerController.m; sourceTree = "<group>"; };
 		6DE9DEB19BE91BE8BFC2E7E6412C4E1B /* MWTapDetectingImageView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MWTapDetectingImageView.m; path = Pod/Classes/MWTapDetectingImageView.m; sourceTree = "<group>"; };
 		6F650594A8603EE39694F2143CA2CD72 /* BLPhotoAssetPickerController-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "BLPhotoAssetPickerController-prefix.pch"; sourceTree = "<group>"; };
 		6F96DB9A03D61110FE3F151AA7D861D0 /* RMPopoverPresentationController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = RMPopoverPresentationController.m; sourceTree = "<group>"; };
@@ -830,7 +831,6 @@
 		E2AB82C3D8BE0BDDAC2AE6709CDFC3BF /* ImageError@3x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "ImageError@3x.png"; path = "Pod/Assets/ImageError@3x.png"; sourceTree = "<group>"; };
 		E31285C767F9920B3FA0308C4297F074 /* UIImage+MultiFormat.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIImage+MultiFormat.m"; path = "SDWebImage/UIImage+MultiFormat.m"; sourceTree = "<group>"; };
 		E4A35D7EA1995E4C8FF18CEC2BA0B446 /* Masonry.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = Masonry.h; path = Masonry/Masonry.h; sourceTree = "<group>"; };
-		E52896D459997982315709C04D2D720F /* BLPhotoAssetPickerController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = BLPhotoAssetPickerController.h; sourceTree = "<group>"; };
 		E6A3294835E67823A422630A98AE5C09 /* UIAlertController+Blocks.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "UIAlertController+Blocks.h"; sourceTree = "<group>"; };
 		E74E36D86F30760E8A831164987B5EC6 /* MWInbilinNavigationBar.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MWInbilinNavigationBar.m; path = Pod/Classes/MWInbilinNavigationBar.m; sourceTree = "<group>"; };
 		E87F0D2C65BE103BAA628E9D1317F229 /* CommentActionIcon@2x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "CommentActionIcon@2x.png"; path = "Pod/Assets/CommentActionIcon@2x.png"; sourceTree = "<group>"; };
@@ -1589,10 +1589,10 @@
 				FFFC81E06945BE52FDF0F4EA4608FB50 /* BLAssetPhotoCollectionViewCell.m */,
 				246B3AE3A2D3771BD03D004CF6FBA5F9 /* BLAssetSwitch.h */,
 				8349BBBEB56CB511475F3C6A7EBCF430 /* BLAssetSwitch.m */,
-				E52896D459997982315709C04D2D720F /* BLPhotoAssetPickerController.h */,
-				13CBFEBF58EABF57A8690A6E12C1093D /* BLPhotoAssetPickerController.m */,
-				3794202864576906346D72DE05B56D9C /* BLPhotoAssetViewController.h */,
-				0A983FE53E083DAA7F1C73326A1608E5 /* BLPhotoAssetViewController.m */,
+				6C63CA111DD2D395004E53BF /* BLPhotoAssetNavigationController.h */,
+				6C63CA121DD2D395004E53BF /* BLPhotoAssetNavigationController.m */,
+				6C63CA151DD2D57E004E53BF /* BLPhotoAssetPickerController.h */,
+				6C63CA161DD2D57E004E53BF /* BLPhotoAssetPickerController.m */,
 				D331431F7845DBE5CFA08E7FA499915F /* Additions */,
 				078157CF8CF058862D2C18442D81D595 /* Common */,
 				8250463101F22FFCF5DF612C43CAF4FF /* datacenter */,
@@ -1924,11 +1924,11 @@
 				73CAD9FB283CDDCB4499D9B915DCBA85 /* BLAssetPhotoCollectionViewCell.h in Headers */,
 				974A589A5289A6AD9E2DD489A25A4C0D /* BLAssetSwitch.h in Headers */,
 				CBEAF617FAA03A4E914C3A75046873D6 /* BLPhotoAssetPickerController-umbrella.h in Headers */,
-				6B38D662C8E93BC093B456174DE57D09 /* BLPhotoAssetPickerController.h in Headers */,
-				1ABA5DD53C03CFA8861E384B51A83B48 /* BLPhotoAssetViewController.h in Headers */,
 				B6C017AFDE2B7C0571DDA0B3ABF9A83F /* BLPhotoDataCenter.h in Headers */,
 				B93C250DE15C0258B4DCFBBDBE9FD428 /* BLPhotoUtils.h in Headers */,
+				6C63CA131DD2D395004E53BF /* BLPhotoAssetNavigationController.h in Headers */,
 				05F60121F550887337D4C7D5157352A1 /* Constants.h in Headers */,
+				6C63CA171DD2D57E004E53BF /* BLPhotoAssetPickerController.h in Headers */,
 				F42BFA5516B150B80ADF1353EBDB8D9C /* ImageUtils.h in Headers */,
 				19D787A8A82420545688FC5C1C0DE0E7 /* MBProgressHUD+Add.h in Headers */,
 				37BF765ED321A96DE9F2E626E67D56FE /* PHAssetCollection+BLPhotoUtils.h in Headers */,
@@ -2379,15 +2379,15 @@
 				25B76EA53D02918CF0BA49CD835E998A /* BLAssetPhotoCollectionViewCell.m in Sources */,
 				3912AC0B5C085547674E7C30BBAC3455 /* BLAssetSwitch.m in Sources */,
 				B428E145ADF42D389DC696F813691D6F /* BLPhotoAssetPickerController-dummy.m in Sources */,
-				49A714EC195021812AF1802590C12EBE /* BLPhotoAssetPickerController.m in Sources */,
-				A8ABB38650021C3D12FF650F97713743 /* BLPhotoAssetViewController.m in Sources */,
 				138B64CBAD38D248B89ED1FD1053360A /* BLPhotoDataCenter.m in Sources */,
 				390A18D56B883EAEF6942C0AB5BC1A52 /* BLPhotoUtils.m in Sources */,
+				6C63CA181DD2D57E004E53BF /* BLPhotoAssetPickerController.m in Sources */,
 				0C90075ECC5DAD709220442A4C4904A7 /* ImageUtils.m in Sources */,
 				18D697041E2C073C275AF2813625BB96 /* MBProgressHUD+Add.m in Sources */,
 				D25228F011444F55F3ABBA13C3A52714 /* PHAssetCollection+BLPhotoUtils.m in Sources */,
 				A1CEC045177ACD6FA3A3B00C829C6A72 /* UIImage+MultipleImagePicker.m in Sources */,
 				14A56680C69A0CF042E2EFC0B6C714E7 /* UIWindow+BLUtility.m in Sources */,
+				6C63CA141DD2D395004E53BF /* BLPhotoAssetNavigationController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
