@@ -194,7 +194,8 @@
         options.deliveryMode = PHImageRequestOptionsDeliveryModeHighQualityFormat;
         options.networkAccessAllowed = YES;
         
-        PHImageRequestID requestID = [[PHImageManager defaultManager] requestImageForAsset:asset targetSize:[[BLPhotoDataCenter sharedInstance] caculateTargetSize:CGSizeMake(asset.pixelWidth, asset.pixelHeight)] contentMode:PHImageContentModeAspectFit options:options resultHandler:^(UIImage * _Nullable result, NSDictionary * _Nullable info) {
+        CGSize targetSize = [[BLPhotoDataCenter sharedInstance] caculateTargetSize:CGSizeMake(asset.pixelWidth, asset.pixelHeight) maxWidth:maxSize.width maxHeight:maxSize.height];
+        PHImageRequestID requestID = [[PHImageManager defaultManager] requestImageForAsset:asset targetSize:targetSize contentMode:PHImageContentModeAspectFit options:options resultHandler:^(UIImage * _Nullable result, NSDictionary * _Nullable info) {
             if (result) {
                 assetImageDic[@(i)] = result;
                 if (assetImageDic.count == assets.count) {
@@ -212,16 +213,16 @@
     }
 }
 
-- (CGSize)caculateTargetSize:(CGSize )fromSize {
+- (CGSize)caculateTargetSize:(CGSize )fromSize maxWidth:(CGFloat)maxWidth maxHeight:(CGFloat)maxHeight {
     CGSize size = fromSize;
-    if ((size.width > UPLOAD_IMAGE_WIDTH) || ((size.height) > UPLOAD_IMAGE_HEIGHT)) {
+    if ((size.width > maxWidth) || ((size.height) > maxHeight)) {
         if ((size.width / size.height) > 1) {
             // 横图
-            CGFloat scale = MIN((UPLOAD_IMAGE_WIDTH / size.height), (UPLOAD_IMAGE_HEIGHT / size.width));
+            CGFloat scale = MIN((maxWidth / size.height), (maxHeight / size.width));
             size = CGSizeMake(size.width * scale, size.height * scale);
         } else {
             // 竖图
-            CGFloat scale = MIN((UPLOAD_IMAGE_WIDTH / size.width), (UPLOAD_IMAGE_HEIGHT / size.height));
+            CGFloat scale = MIN((maxWidth / size.width), (maxHeight / size.height));
             size = CGSizeMake(size.width * scale, size.height * scale);
         }
     }
