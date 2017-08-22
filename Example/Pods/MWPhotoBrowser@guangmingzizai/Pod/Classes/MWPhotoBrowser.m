@@ -223,10 +223,12 @@ static void * MWVideoPlayerObservation = &MWVideoPlayerObservation;
     if ([self scaleAnimationImageViewAtIndex:_currentPageIndex] ||
         [self scaleImageAtIndex:_currentPageIndex]) {
         id <MWPhoto> photo = [self photoAtIndex:_currentPageIndex];
-        if ([photo underlyingImageExistsLocally]) {
-            // Transition animation
-            [self performPresentAnimation];
-        }
+        [photo underlyingImageExistsLocally:^(BOOL exists) {
+            if (exists) {
+                // Transition animation
+                [self performPresentAnimation];
+            }
+        }];
     }
 
 	// Super

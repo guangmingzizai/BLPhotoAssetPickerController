@@ -53,7 +53,7 @@
 // as long as the image can be re-loaded (from cache, file, or URL)
 - (void)unloadUnderlyingImage;
 
-- (BOOL)underlyingImageExistsLocally;
+- (void)underlyingImageExistsLocally:(void (^)(BOOL exists))completion;
 
 @optional
 

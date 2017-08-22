@@ -172,31 +172,33 @@
         if (self.underlyingImage) {
             [self imageLoadingComplete];
         } else {
-            if ([self underlyingImageExistsLocally]) {
-                [self performLoadUnderlyingImageAndNotify];
-            } else {
-                if (self.lowQualityImage) {
-                    [[NSNotificationCenter defaultCenter] postNotificationName:MWPHOTO_LOW_QUALITY_IMAGE_LOADED_NOTIFICATION
-                                                                        object:self];
+            [self underlyingImageExistsLocally:^(BOOL exists) {
+                if (exists) {
                     [self performLoadUnderlyingImageAndNotify];
                 } else {
-                    if (self.lowQualityImageURL) {
-                        [self _downloadImageWithURL:self.lowQualityImageURL retry:0 completion:^(UIImage *image, BOOL success){
-                            if (success) {
-                                _lowQualityImage = image;
-                                [[NSNotificationCenter defaultCenter] postNotificationName:MWPHOTO_LOW_QUALITY_IMAGE_LOADED_NOTIFICATION
-                                                                                    object:self];
-                                [self performLoadUnderlyingImageAndNotify];
-                            } else {
-                                _webImageOperation = nil;
-                                [self imageLoadingComplete];
-                            }
-                        }];
-                    } else {
+                    if (self.lowQualityImage) {
+                        [[NSNotificationCenter defaultCenter] postNotificationName:MWPHOTO_LOW_QUALITY_IMAGE_LOADED_NOTIFICATION
+                                                                            object:self];
                         [self performLoadUnderlyingImageAndNotify];
+                    } else {
+                        if (self.lowQualityImageURL) {
+                            [self _downloadImageWithURL:self.lowQualityImageURL retry:0 completion:^(UIImage *image, BOOL success){
+                                if (success) {
+                                    _lowQualityImage = image;
+                                    [[NSNotificationCenter defaultCenter] postNotificationName:MWPHOTO_LOW_QUALITY_IMAGE_LOADED_NOTIFICATION
+                                                                                        object:self];
+                                    [self performLoadUnderlyingImageAndNotify];
+                                } else {
+                                    _webImageOperation = nil;
+                                    [self imageLoadingComplete];
+                                }
+                            }];
+                        } else {
+                            [self performLoadUnderlyingImageAndNotify];
+                        }
                     }
                 }
-            }
+            }];
         }
     }
     @catch (NSException *exception) {

@@ -1,12 +1,12 @@
 PODS:
-  - BLPhotoAssetPickerController (0.1.0):
+  - BLPhotoAssetPickerController (0.1.2):
     - Masonry
     - MBProgressHUD
-    - MWPhotoBrowser@guangmingzizai (~> 2.2.1)
+    - MWPhotoBrowser@guangmingzizai (~> 2.2.2)
   - DACircularProgress (2.3.1)
   - Masonry (1.0.2)
   - MBProgressHUD (0.9.2)
-  - MWPhotoBrowser@guangmingzizai (2.2.1):
+  - MWPhotoBrowser@guangmingzizai (2.2.2):
     - DACircularProgress (~> 2.3)
     - MBProgressHUD (~> 0.9)
     - pop (~> 1.0)
@@ -34,11 +34,11 @@ EXTERNAL SOURCES:
     :path: ../
 
 SPEC CHECKSUMS:
-  BLPhotoAssetPickerController: c9b94f109cc8253baf6db2d28436c23bd6e7bc17
+  BLPhotoAssetPickerController: f87e0e9dd3e9a4566f50aaefaf16c9852502e9b4
   DACircularProgress: 4dd437c0fc3da5161cb289e07ac449493d41db71
   Masonry: 7c429b56da9d4ee0bbb3ed77a5ea710d6a5df39e
   MBProgressHUD: 1569cf7ace17a8bac47aabfbb8580a49690386d1
-  MWPhotoBrowser@guangmingzizai: 3e43fd4f48c5b9983129554ed588e2752151987a
+  MWPhotoBrowser@guangmingzizai: 61a1f601ff95dfbfdddf00680d5611e2fe6580b4
   pop: 82ca6b068ce9278fd350fd9dd09482a0ce9492e6
   RMUniversalAlert: ce7118101a19fa41b9adedf907b66a8cc3bd32c8
   SDWebImage: 0e435c14e402a6730315a0fb79f95e68654d55a4
