@@ -142,23 +142,26 @@
     return _underlyingImage;
 }
 
-- (BOOL)underlyingImageExistsLocally {
-    BOOL exists = NO;
+- (void)underlyingImageExistsLocally:(void (^)(BOOL exists))completion {
     if (self.underlyingImage) {
-        exists = YES;
+        completion(YES);
     } else if (_photoURL) {
         // Check what type of url it is
         if ([[[_photoURL scheme] lowercaseString] isEqualToString:@"assets-library"]) {
-            exists = YES;
+            completion(YES);
         } else if ([_photoURL isFileReferenceURL] ||
                    [_photoURL isFileURL]) {
-            exists = YES;
+            completion(YES);
         } else {
             // Web image
-            exists = [[SDWebImageManager sharedManager] diskImageExistsForURL:_photoURL];
+            [[SDWebImageManager sharedManager] diskImageExistsForURL:_photoURL
+                                                          completion:^(BOOL isInCache) {
+                                                              completion(isInCache);
+                                                          }];
         }
+    } else {
+        completion(NO);
     }
-    return exists;
 }
 
 - (void)loadUnderlyingImageAndNotify {
@@ -253,27 +256,26 @@
 - (void)_performLoadUnderlyingImageAndNotifyWithWebURL:(NSURL *)url {
     @try {
         SDWebImageManager *manager = [SDWebImageManager sharedManager];
-        _webImageOperation = [manager downloadImageWithURL:url
-                                                   options:SDWebImageRetryFailed
-                                                  progress:^(NSInteger receivedSize, NSInteger expectedSize) {
-                                                      if (expectedSize > 0) {
-                                                          float progress = receivedSize / (float)expectedSize;
-                                                          NSDictionary* dict = [NSDictionary dictionaryWithObjectsAndKeys:
-                                                                                [NSNumber numberWithFloat:progress], @"progress",
-                                                                                self, @"photo", nil];
-                                                          [[NSNotificationCenter defaultCenter] postNotificationName:MWPHOTO_PROGRESS_NOTIFICATION object:dict];
-                                                      }
+        _webImageOperation = [manager loadImageWithURL:url
+                                               options:SDWebImageRetryFailed
+                                              progress:^(NSInteger receivedSize, NSInteger expectedSize, NSURL * _Nullable targetURL) {
+                                                  if (expectedSize > 0) {
+                                                      float progress = receivedSize / (float)expectedSize;
+                                                      NSDictionary* dict = [NSDictionary dictionaryWithObjectsAndKeys:
+                                                                            [NSNumber numberWithFloat:progress], @"progress",
+                                                                            self, @"photo", nil];
+                                                      [[NSNotificationCenter defaultCenter] postNotificationName:MWPHOTO_PROGRESS_NOTIFICATION object:dict];
                                                   }
-                                                 completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished, NSURL *imageURL) {
-                                                     if (error) {
-                                                         MWLog(@"SDWebImage failed to download image: %@", error);
-                                                     }
-                                                     _webImageOperation = nil;
-                                                     self.underlyingImage = image;
-                                                     dispatch_async(dispatch_get_main_queue(), ^{
-                                                         [self imageLoadingComplete];
-                                                     });
-                                                 }];
+                                              } completed:^(UIImage * _Nullable image, NSData * _Nullable data, NSError * _Nullable error, SDImageCacheType cacheType, BOOL finished, NSURL * _Nullable imageURL) {
+                                                  if (error) {
+                                                      MWLog(@"SDWebImage failed to download image: %@", error);
+                                                  }
+                                                  _webImageOperation = nil;
+                                                  self.underlyingImage = image;
+                                                  dispatch_async(dispatch_get_main_queue(), ^{
+                                                      [self imageLoadingComplete];
+                                                  });
+                                              }];
     } @catch (NSException *e) {
         MWLog(@"Photo from web: %@", e);
         _webImageOperation = nil;
@@ -388,22 +390,22 @@
     __block NSInteger retryTime = retry;
     @try {
         SDWebImageManager *manager = [SDWebImageManager sharedManager];
-        _webImageOperation = [manager downloadImageWithURL:imageURL
-                                                   options:SDWebImageRetryFailed
-                                                  progress:nil
-                                                 completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished, NSURL *imageURL) {
-                                                     if (error && !image) {
-                                                         MWLog(@"SDWebImage failed to download image: %@", error);
-                                                         if (retryTime > 0) {
-                                                             retryTime--;
-                                                             [self _downloadImageWithURL:imageURL retry:retryTime completion:completion];
-                                                             return;
-                                                         }
+        _webImageOperation = [manager loadImageWithURL:imageURL
+                                               options:SDWebImageRetryFailed
+                                              progress:nil
+                                             completed:^(UIImage * _Nullable image, NSData * _Nullable data, NSError * _Nullable error, SDImageCacheType cacheType, BOOL finished, NSURL * _Nullable imageURL) {
+                                                 if (error && !image) {
+                                                     MWLog(@"SDWebImage failed to download image: %@", error);
+                                                     if (retryTime > 0) {
+                                                         retryTime--;
+                                                         [self _downloadImageWithURL:imageURL retry:retryTime completion:completion];
+                                                         return;
                                                      }
-                                                     if (completion) {
-                                                         completion(image, !error && image);
-                                                     }
-                                                 }];
+                                                 }
+                                                 if (completion) {
+                                                     completion(image, !error && image);
+                                                 }
+                                             }];
     } @catch (NSException *e) {
         MWLog(@"Photo from web: %@", e);
         if (completion) {

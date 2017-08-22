@@ -6,6 +6,7 @@
 //  Copyright © 2015年 inbilin. All rights reserved.
 //
 
+#define IS_IOS8PLUS             ([[[UIDevice currentDevice] systemVersion] compare:@"8.0" options:NSNumericSearch] != NSOrderedAscending)
 #define kThumbnailLength    (UI_SCREEN_WIDTH/3 -36/3)
 #define UPLOAD_IMAGE_WIDTH   800
 #define UPLOAD_IMAGE_HEIGHT  1280
@@ -213,6 +214,36 @@
     }
 }
 
++ (void)getThumbnailDataFromAssets:(NSArray *)assets WithBlock:(void (^) (NSArray *array))thumbBlock withRequestIDBlock:(void (^) (NSArray *requestArray))requestIdBlock {
+    NSMutableArray *thumbArray = [NSMutableArray array];
+    NSMutableArray *requestArray = [NSMutableArray array];
+    NSMutableDictionary *assetImageDic = [NSMutableDictionary dictionary];
+    
+    for (volatile int i = 0; i < assets.count; i ++) {
+        PHAsset *asset = [assets objectAtIndex:i];
+        PHImageRequestOptions *options = [[PHImageRequestOptions alloc] init];
+        options.resizeMode = PHImageRequestOptionsResizeModeExact;
+        options.deliveryMode = PHImageRequestOptionsDeliveryModeHighQualityFormat;
+        options.networkAccessAllowed = YES;
+        
+        PHImageRequestID requestID = [[PHImageManager defaultManager] requestImageForAsset:(PHAsset *)asset targetSize:[[BLPhotoDataCenter sharedInstance] caculateTargetSize:CGSizeMake(asset.pixelWidth, asset.pixelHeight)] contentMode:PHImageContentModeAspectFit options:options resultHandler:^(UIImage * _Nullable result, NSDictionary * _Nullable info) {
+            if (result) {
+                assetImageDic[@(i)] = result;
+                if (assetImageDic.count == assets.count) {
+                    for (int j = 0; j < assets.count; j++) {
+                        [thumbArray addObject:assetImageDic[@(j)]];
+                    }
+                    thumbBlock(thumbArray);
+                }
+            }
+        }];
+        [requestArray addObject:[NSNumber numberWithInt:(requestID)]];
+        if (requestArray.count == assets.count) {
+            requestIdBlock(requestArray);
+        }
+    }
+}
+
 - (CGSize)caculateTargetSize:(CGSize )fromSize maxWidth:(CGFloat)maxWidth maxHeight:(CGFloat)maxHeight {
     CGSize size = fromSize;
     if ((size.width > maxWidth) || ((size.height) > maxHeight)) {
@@ -229,5 +260,20 @@
     return size;
 }
 
+- (CGSize)caculateTargetSize:(CGSize )fromSize {
+    CGSize size = fromSize;
+    if ((size.width > UPLOAD_IMAGE_WIDTH) || ((size.height) > UPLOAD_IMAGE_HEIGHT)) {
+        if ((size.width / size.height) > 1) {
+            // 横图
+            CGFloat scale = MIN((UPLOAD_IMAGE_WIDTH / size.height), (UPLOAD_IMAGE_HEIGHT / size.width));
+            size = CGSizeMake(size.width * scale, size.height * scale);
+        } else {
+            // 竖图
+            CGFloat scale = MIN((UPLOAD_IMAGE_WIDTH / size.width), (UPLOAD_IMAGE_HEIGHT / size.height));
+            size = CGSizeMake(size.width * scale, size.height * scale);
+        }
+    }
+    return size;
+}
 
 @end

@@ -255,21 +255,21 @@
     NSMutableArray *imageList = [NSMutableArray arrayWithArray:urls];
     __block NSUInteger remain = urls.count;
     [urls enumerateObjectsUsingBlock:^(NSURL * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        [[SDWebImageManager sharedManager] downloadImageWithURL:obj
-                                                        options:SDWebImageRetryFailed
-                                                       progress:nil
-                                                      completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished, NSURL *imageURL) {
-                                                          if (image) {
-                                                              imageList[idx] = image;
-                                                              remain--;
-                                                              if (remain == 0) {
-                                                                  block(imageList);
-                                                              }
+        [[SDWebImageManager sharedManager] loadImageWithURL:obj
+                                                    options:SDWebImageRetryFailed
+                                                   progress:nil
+                                                  completed:^(UIImage * _Nullable image, NSData * _Nullable data, NSError * _Nullable error, SDImageCacheType cacheType, BOOL finished, NSURL * _Nullable imageURL) {
+                                                      if (image) {
+                                                          imageList[idx] = image;
+                                                          remain--;
+                                                          if (remain == 0) {
+                                                              block(imageList);
                                                           }
-                                                          else {
-                                                              block(nil);
-                                                          }
-        }];
+                                                      }
+                                                      else {
+                                                          block(nil);
+                                                      }
+                                                  }];
     }];
 }
 

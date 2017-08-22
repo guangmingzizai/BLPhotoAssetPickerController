@@ -2,25 +2,25 @@ PODS:
   - BLPhotoAssetPickerController (0.1.0):
     - Masonry
     - MBProgressHUD
-    - MWPhotoBrowser@guangmingzizai (~> 2.2.0)
+    - MWPhotoBrowser@guangmingzizai (~> 2.2.1)
   - DACircularProgress (2.3.1)
   - Masonry (1.0.2)
   - MBProgressHUD (0.9.2)
-  - MWPhotoBrowser@guangmingzizai (2.2.0):
+  - MWPhotoBrowser@guangmingzizai (2.2.1):
     - DACircularProgress (~> 2.3)
     - MBProgressHUD (~> 0.9)
     - pop (~> 1.0)
-    - SDWebImage (!= 3.7.2, ~> 3.7)
-  - pop (1.0.9)
+    - SDWebImage (~> 4.0)
+  - pop (1.0.10)
   - RMUniversalAlert (0.8.1):
     - RMUniversalAlert/Core (= 0.8.1)
   - RMUniversalAlert/Core (0.8.1):
     - UIActionSheet+Blocks (>= 0.9)
     - UIAlertController+Blocks (>= 0.9)
     - UIAlertView+Blocks (>= 0.9)
-  - SDWebImage (3.8.2):
-    - SDWebImage/Core (= 3.8.2)
-  - SDWebImage/Core (3.8.2)
+  - SDWebImage (4.1.0):
+    - SDWebImage/Core (= 4.1.0)
+  - SDWebImage/Core (4.1.0)
   - UIActionSheet+Blocks (0.9)
   - UIAlertController+Blocks (0.9.2)
   - UIAlertView+Blocks (0.9)
@@ -34,18 +34,18 @@ EXTERNAL SOURCES:
     :path: ../
 
 SPEC CHECKSUMS:
-  BLPhotoAssetPickerController: 776ac3a76933d65f1c7f44fac811e3d74592cf8a
+  BLPhotoAssetPickerController: c9b94f109cc8253baf6db2d28436c23bd6e7bc17
   DACircularProgress: 4dd437c0fc3da5161cb289e07ac449493d41db71
   Masonry: 7c429b56da9d4ee0bbb3ed77a5ea710d6a5df39e
   MBProgressHUD: 1569cf7ace17a8bac47aabfbb8580a49690386d1
-  MWPhotoBrowser@guangmingzizai: 81445ed0ec5bfd162881247610670742d37def92
-  pop: f667631a5108a2e60d9e8797c9b32ddaf2080bce
+  MWPhotoBrowser@guangmingzizai: 3e43fd4f48c5b9983129554ed588e2752151987a
+  pop: 82ca6b068ce9278fd350fd9dd09482a0ce9492e6
   RMUniversalAlert: ce7118101a19fa41b9adedf907b66a8cc3bd32c8
-  SDWebImage: 098e97e6176540799c27e804c96653ee0833d13c
+  SDWebImage: 0e435c14e402a6730315a0fb79f95e68654d55a4
   UIActionSheet+Blocks: e180b7dad0a721ab7f212ac9742af799008bb358
   UIAlertController+Blocks: 80e28b92523fb58aba4d1bccec013d5a0b0bddb2
   UIAlertView+Blocks: a46c99c5144f6c5dbc7d62fd2a0678daceec89a3
 
 PODFILE CHECKSUM: 9fbaac715bc43005110ae0078c3f28b41de9935e
 
-COCOAPODS: 1.1.0.rc.2
+COCOAPODS: 1.2.0

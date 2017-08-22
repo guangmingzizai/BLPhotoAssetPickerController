@@ -1,4 +1,14 @@
+#ifdef __OBJC__
 #import <UIKit/UIKit.h>
+#else
+#ifndef FOUNDATION_EXPORT
+#if defined(__cplusplus)
+#define FOUNDATION_EXPORT extern "C"
+#else
+#define FOUNDATION_EXPORT extern
+#endif
+#endif
+#endif
 
 #import "MBProgressHUD+Add.h"
 #import "UIImage+MultipleImagePicker.h"
@@ -7,8 +17,8 @@
 #import "BLAssetGroupTableViewCell.h"
 #import "BLAssetPhotoCollectionViewCell.h"
 #import "BLAssetSwitch.h"
+#import "BLPhotoAssetNavigationController.h"
 #import "BLPhotoAssetPickerController.h"
-#import "BLPhotoAssetViewController.h"
 #import "Constants.h"
 #import "BLPhotoDataCenter.h"
 #import "BLPhotoUtils.h"

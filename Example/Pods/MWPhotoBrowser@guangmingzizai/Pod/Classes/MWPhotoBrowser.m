@@ -2162,7 +2162,7 @@ static void * MWVideoPlayerObservation = &MWVideoPlayerObservation;
                     id <MWPhoto> photo = [self photoAtIndex:i];
                     if (photo.photoURL) {
                         NSString *key = [[SDWebImageManager sharedManager] cacheKeyForURL:photo.photoURL];
-                        [[SDImageCache sharedImageCache] removeImageForKey:key fromDisk:NO];
+                        [[SDImageCache sharedImageCache] removeImageForKey:key fromDisk:NO withCompletion:nil];
                     }
                 }
             }
