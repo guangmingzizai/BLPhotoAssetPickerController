@@ -138,7 +138,7 @@
     [_bottomBg mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(12);
         make.right.mas_equalTo(-12);
-        make.bottom.mas_equalTo(0);
+        make.bottom.mas_equalTo(IS_IPHONE_X ? -34 : 0);
         make.height.mas_equalTo(44);
     }];
     
