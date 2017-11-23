@@ -15,7 +15,7 @@
     CGSize screenSize = [[UIScreen mainScreen] bounds].size;
     for (NSInteger i = (windows.count - 1); i >= 0; i--) {
         UIWindow *window = [windows objectAtIndex:i];
-        if (CGSizeEqualToSize(screenSize, window.bounds.size)) {
+        if (!window.hidden && CGSizeEqualToSize(screenSize, window.bounds.size)) {
             return window;
         }
     }
