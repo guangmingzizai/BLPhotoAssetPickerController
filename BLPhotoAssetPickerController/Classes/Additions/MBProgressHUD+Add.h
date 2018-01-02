@@ -22,8 +22,8 @@
 + (void)showTip:(NSString *)tip duration:(CGFloat)duration;
 + (void)showHUDInFrontWindowWithImage:(NSString *)imageName text:(NSString *)text detailText:(NSString *)detailsText detailFont:(UIFont *)detailsFont duration:(float)duration;
 
-+ (MB_INSTANCETYPE)showHUDAddedTo:(UIView *)view animated:(BOOL)animated withTitle:(NSString *)title;
-+ (MB_INSTANCETYPE)showHUDAddedTo:(UIView *)view animated:(BOOL)animated withTitle:(NSString *)title moveY:(CGFloat) offY;
-+ (MB_INSTANCETYPE)showHUDInKeyWindowWithImage:(NSString *)imageName text:(NSString *)text duration:(float)duration ;
-+ (MB_INSTANCETYPE)showHUDInKeyWindowWithImage:(NSString *)imageName text:(NSString *)text detailText:(NSString *)detailsText detailFont:(UIFont *)detailsFont duration:(float)duration ;
++ (instancetype)showHUDAddedTo:(UIView *)view animated:(BOOL)animated withTitle:(NSString *)title;
++ (instancetype)showHUDAddedTo:(UIView *)view animated:(BOOL)animated withTitle:(NSString *)title moveY:(CGFloat) offY;
++ (instancetype)showHUDInKeyWindowWithImage:(NSString *)imageName text:(NSString *)text duration:(float)duration ;
++ (instancetype)showHUDInKeyWindowWithImage:(NSString *)imageName text:(NSString *)text detailText:(NSString *)detailsText detailFont:(UIFont *)detailsFont duration:(float)duration ;
 @end

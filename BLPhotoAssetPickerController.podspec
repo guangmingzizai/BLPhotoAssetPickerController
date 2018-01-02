@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'BLPhotoAssetPickerController'
-  s.version          = '0.1.5'
+  s.version          = '0.1.6'
   s.summary          = 'A image picker supports multiple selection.'
 
 # This description is used to generate tags and improve search results.
@@ -39,7 +39,7 @@ TODO: Add long description of the pod here.
   # s.public_header_files = 'Pod/Classes/**/*.h'
     s.frameworks = 'UIKit', 'AssetsLibrary', 'QuartzCore'
     s.dependency 'MBProgressHUD'
-    s.dependency 'MWPhotoBrowser@guangmingzizai', '~> 2.2.3'
+    s.dependency 'MWPhotoBrowser@guangmingzizai', '~> 2.2.4'
     s.dependency 'Masonry'
 
 end

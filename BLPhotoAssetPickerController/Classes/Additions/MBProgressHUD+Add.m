@@ -60,15 +60,15 @@
     [CATransaction begin];
     UIWindow *win = [UIWindow bl_mainWindow];
     [MBProgressHUD hideHUDForView:win animated:NO];
-    MBProgressHUD *HUD = [[MBProgressHUD alloc] initWithWindow:win];
+    MBProgressHUD *HUD = [[MBProgressHUD alloc] initWithView:win];
     [win addSubview:HUD];
     HUD.customView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"ico_send_fail"]];
     HUD.removeFromSuperViewOnHide = YES;
     HUD.mode = MBProgressHUDModeCustomView;
-    HUD.labelText = tip;
-    [HUD show:YES];
+    HUD.label.text = tip;
+    [HUD showAnimated:YES];
     [CATransaction commit];
-    [HUD hide:YES afterDelay:1.5];
+    [HUD hideAnimated:YES afterDelay:1.5];
 }
 
 + (void)showTip:(NSString *)tip {
@@ -81,47 +81,47 @@
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:window animated:YES];
     hud.mode = MBProgressHUDModeText;
     if (tip.length > 10) {
-        hud.detailsLabelText = tip;
-        hud.detailsLabelFont = [UIFont boldSystemFontOfSize:14];
+        hud.detailsLabel.text = tip;
+        hud.detailsLabel.font = [UIFont boldSystemFontOfSize:14];
     } else {
-        hud.labelText = tip;
+        hud.label.text = tip;
     }
-    [hud hide:YES afterDelay:duration];
+    [hud hideAnimated:YES afterDelay:duration];
 }
 
 + (void)showHUDInFrontWindowWithImage:(NSString *)imageName text:(NSString *)text detailText:(NSString *)detailsText detailFont:(UIFont *)detailsFont duration:(float)duration{
     [CATransaction begin];
     UIWindow *keyWindow = [UIWindow bl_mainWindow];
-    MBProgressHUD *HUD = [[MBProgressHUD alloc] initWithWindow:keyWindow];
+    MBProgressHUD *HUD = [[MBProgressHUD alloc] initWithView:keyWindow];
     [HUD setUserInteractionEnabled:YES];
     [keyWindow addSubview:HUD];
     HUD.customView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:imageName]];
     HUD.removeFromSuperViewOnHide = YES;
     HUD.mode = MBProgressHUDModeCustomView;
-    HUD.labelText = text;
-    HUD.detailsLabelText = detailsText;
-    HUD.detailsLabelFont = detailsFont;
-    [HUD show:YES];
+    HUD.label.text = text;
+    HUD.detailsLabel.text = detailsText;
+    HUD.detailsLabel.font = detailsFont;
+    [HUD showAnimated:YES];
     [CATransaction commit];
-    [HUD hide:YES afterDelay:duration];
+    [HUD hideAnimated:YES afterDelay:duration];
 }
 
-+ (MB_INSTANCETYPE )showHUDAddedTo:(UIView *)view animated:(BOOL)animated withTitle:(NSString *)title
++ (instancetype )showHUDAddedTo:(UIView *)view animated:(BOOL)animated withTitle:(NSString *)title
 {
     MBProgressHUD *hud = [[MBProgressHUD alloc] initWithView:view];
-    hud.labelText = title;
+    hud.label.text = title;
     [view addSubview:hud];
-    [hud show:animated];
+    [hud showAnimated:animated];
     return hud;
 }
 
-+ (MB_INSTANCETYPE)showHUDAddedTo:(UIView *)view animated:(BOOL)animated withTitle:(NSString *)title moveY:(CGFloat) offY
++ (instancetype)showHUDAddedTo:(UIView *)view animated:(BOOL)animated withTitle:(NSString *)title moveY:(CGFloat) offY
 {
     MBProgressHUD *hud = [[MBProgressHUD alloc] initWithView:view];
-    hud.labelText = title;
+    hud.label.text = title;
     [hud setCenter:CGPointMake(hud.center.x, hud.center.y+offY)];
     [view addSubview:hud];
-    [hud show:animated];
+    [hud showAnimated:animated];
     return hud;
 }
 
@@ -132,39 +132,39 @@
     }
 }
 
-+ (MB_INSTANCETYPE)showHUDInKeyWindowWithImage:(NSString *)imageName text:(NSString *)text duration:(float)duration {
++ (instancetype)showHUDInKeyWindowWithImage:(NSString *)imageName text:(NSString *)text duration:(float)duration {
     
     UIWindow *win = [UIWindow bl_mainWindow];
     [MBProgressHUD hideHUDForView:win  animated:NO];
-    MBProgressHUD *HUD = [[MBProgressHUD alloc] initWithWindow:win];
+    MBProgressHUD *HUD = [[MBProgressHUD alloc] initWithView:win];
     
     HUD.customView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:imageName]];
     HUD.removeFromSuperViewOnHide = YES;
     HUD.mode = MBProgressHUDModeCustomView;
-    HUD.labelText = text;
+    HUD.label.text = text;
     
     [win addSubview:HUD];
-    [HUD show:YES];
+    [HUD showAnimated:YES];
     
-    [HUD hide:YES afterDelay:duration];
+    [HUD hideAnimated:YES afterDelay:duration];
     return HUD;
 }
 
-+ (MB_INSTANCETYPE)showHUDInKeyWindowWithImage:(NSString *)imageName text:(NSString *)text detailText:(NSString *)detailsText detailFont:(UIFont *)detailsFont duration:(float)duration {
++ (instancetype)showHUDInKeyWindowWithImage:(NSString *)imageName text:(NSString *)text detailText:(NSString *)detailsText detailFont:(UIFont *)detailsFont duration:(float)duration {
     
     UIWindow *mainWindown = [UIWindow bl_mainWindow];
-    MBProgressHUD *HUD = [[MBProgressHUD alloc] initWithWindow:mainWindown];
+    MBProgressHUD *HUD = [[MBProgressHUD alloc] initWithView:mainWindown];
     
     HUD.customView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:imageName]];
     HUD.removeFromSuperViewOnHide = YES;
     HUD.mode = MBProgressHUDModeCustomView;
-    HUD.labelText = text;
-    HUD.detailsLabelText = detailsText;
-    HUD.detailsLabelFont = detailsFont;
+    HUD.label.text = text;
+    HUD.detailsLabel.text = detailsText;
+    HUD.detailsLabel.font = detailsFont;
     
     [mainWindown addSubview:HUD];
-    [HUD show:YES];
-    [HUD hide:YES afterDelay:duration];
+    [HUD showAnimated:YES];
+    [HUD hideAnimated:YES afterDelay:duration];
     
     return HUD;
 }

@@ -1371,18 +1371,18 @@ static void * MWVideoPlayerObservation = &MWVideoPlayerObservation;
 }
 
 - (CGRect)frameForInbilinNavigationBar {
-    return CGRectMake(0, 0, self.view.bounds.size.width, 64);
+    return CGRectMake(0, (IS_IPHONE_X ? 44 : 0), self.view.bounds.size.width, 64);
 }
 
 - (CGRect)frameForInbilinSelectionNavigationBar {
-    return CGRectMake(0, 0, self.view.bounds.size.width, 64);
+    return CGRectMake(0, (IS_IPHONE_X ? 44 : 0), self.view.bounds.size.width, 64);
 }
 
 - (CGRect)frameForToolbarAtOrientation:(UIInterfaceOrientation)orientation {
     CGFloat height = 44;
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone &&
         UIInterfaceOrientationIsLandscape(orientation)) height = 32;
-	return CGRectIntegral(CGRectMake(0, self.view.bounds.size.height - height, self.view.bounds.size.width, height));
+    return CGRectIntegral(CGRectMake(0, self.view.bounds.size.height - height - (IS_IPHONE_X ? 34 : 0), self.view.bounds.size.width, height));
 }
 
 - (CGRect)frameForCaptionView:(UIView <MWCaptionView> *)captionView {

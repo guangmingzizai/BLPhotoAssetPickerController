@@ -6,7 +6,7 @@
 //  Copyright 2010 d3i. All rights reserved.
 //
 
-#import <SDWebImage/SDWebImageDecoder.h>
+#import <SDWebImage/SDWebImageCoder.h>
 #import <SDWebImage/SDWebImageManager.h>
 #import <SDWebImage/SDWebImageOperation.h>
 #import <AssetsLibrary/AssetsLibrary.h>
@@ -18,7 +18,6 @@
     BOOL _loadingInProgress;
     id <SDWebImageOperation> _webImageOperation;
     PHImageRequestID _assetRequestID;
-        
 }
 
 @property (nonatomic, strong) UIImage *image;

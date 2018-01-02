@@ -17,3 +17,4 @@
 
 #define UI_SCREEN_WIDTH ([[UIScreen mainScreen] bounds].size.width)
 #define UI_SCREEN_HEIGHT ([[UIScreen mainScreen] bounds].size.height)
+#define IS_IPHONE_X ([[UIScreen mainScreen] bounds].size.height == 812)
