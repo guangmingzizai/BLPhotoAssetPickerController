@@ -185,6 +185,11 @@
 }
 
 + (void)requestImagesForAssets:(NSArray<PHAsset *> *)assets maxSize:(CGSize)maxSize completionBlock:(void (^) (NSArray<UIImage *> *array))completionBlock requestIDsBlock:(void (^) (NSArray<NSNumber *> *requestArray))requestIDsBlock {
+    if (assets.count == 0) {
+        completionBlock(@[]);
+        return;
+    }
+    
     NSMutableArray<UIImage *> *imageArray = [NSMutableArray array];
     NSMutableArray<NSNumber *> *requestArray = [NSMutableArray array];
     NSMutableDictionary *assetImageDic = [NSMutableDictionary dictionary];
