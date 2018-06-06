@@ -754,43 +754,59 @@
 {
     AVAuthorizationStatus status = [AVCaptureDevice authorizationStatusForMediaType:AVMediaTypeVideo];
     if (status == AVAuthorizationStatusAuthorized) {
-        callback(YES);
+        dispatch_async(dispatch_get_main_queue(), ^{
+            callback(YES);
+        });
         return;
     } else if (status == AVAuthorizationStatusNotDetermined){
         [AVCaptureDevice requestAccessForMediaType:AVMediaTypeVideo completionHandler:^(BOOL granted) {
-            callback(granted);
+            dispatch_async(dispatch_get_main_queue(), ^{
+                callback(granted);
+            });
             return;
         }];
     } else {
-        callback(NO);
+        dispatch_async(dispatch_get_main_queue(), ^{
+            callback(NO);
+        });
     }
 }
 
 - (void)checkPhotosPermissions:(void(^)(BOOL granted))callback
 {
     if (![PHPhotoLibrary class]) { // iOS 7 support
-        callback(YES);
+        dispatch_async(dispatch_get_main_queue(), ^{
+            callback(YES);
+        });
         return;
     }
     
     PHAuthorizationStatus status = [PHPhotoLibrary authorizationStatus];
     if (status == PHAuthorizationStatusAuthorized) {
-        callback(YES);
+        dispatch_async(dispatch_get_main_queue(), ^{
+            callback(YES);
+        });
         return;
     } else if (status == PHAuthorizationStatusNotDetermined) {
         [PHPhotoLibrary requestAuthorization:^(PHAuthorizationStatus status) {
             if (status == PHAuthorizationStatusAuthorized) {
-                callback(YES);
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    callback(YES);
+                });
                 return;
             }
             else {
-                callback(NO);
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    callback(NO);
+                });
                 return;
             }
         }];
     }
     else {
-        callback(NO);
+        dispatch_async(dispatch_get_main_queue(), ^{
+            callback(NO);
+        });
     }
 }
 
