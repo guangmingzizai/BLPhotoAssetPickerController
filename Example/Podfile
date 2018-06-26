@@ -4,7 +4,7 @@ target 'BLPhotoAssetPickerController_Example' do
   pod 'BLPhotoAssetPickerController', :path => '../'
   # pod 'BLPhotoAssetPickerController', :git => 'https://github.com/guangmingzizai/BLPhotoAssetPickerController.git'
   pod 'RMUniversalAlert'
-
+  pod 'MWPhotoBrowser@guangmingzizai', :path => '/Users/zhaoyg/Desktop/mvphoto_pod/MWPhotoBrowser/'
   target 'BLPhotoAssetPickerController_Tests' do
     inherit! :search_paths
 

@@ -712,14 +712,14 @@ static void * MWVideoPlayerObservation = &MWVideoPlayerObservation;
     _pagingScrollView.alpha = 0.0f;
     
     UIImage *scaleImage = [self scaleImageAtIndex:_currentPageIndex];
-    UIImageView *scaleAniamtionImageView = [self scaleAnimationImageViewAtIndex:_currentPageIndex];
+    UIView *scaleAnimationImageView = [self scaleAnimationImageViewAtIndex:_currentPageIndex];
     
-    UIImage *imageFromView = scaleImage ? scaleImage : [self getImageFromView:scaleAniamtionImageView];
+    UIImage *imageFromView = scaleImage ? scaleImage : [self getImageFromView:scaleAnimationImageView];
     imageFromView = [self rotateImageToCurrentOrientation:imageFromView];
     
     CGRect scaleAnimationViewOriginalFrame = [self scaleAnimationImageViewOriginalFrameAtIndex:_currentPageIndex];
     if (CGRectEqualToRect(scaleAnimationViewOriginalFrame, CGRectZero)) {
-        scaleAnimationViewOriginalFrame = [scaleAniamtionImageView.superview convertRect:scaleAniamtionImageView.frame toView:nil];
+        scaleAnimationViewOriginalFrame = [scaleAnimationImageView.superview convertRect:scaleAnimationImageView.frame toView:nil];
     }
     
     CGRect screenBound = [[UIScreen mainScreen] bounds];
@@ -736,10 +736,10 @@ static void * MWVideoPlayerObservation = &MWVideoPlayerObservation;
     resizableImageView.contentMode = UIViewContentModeScaleAspectFill;
     resizableImageView.backgroundColor = [UIColor colorWithWhite:0 alpha:1];
     [_applicationWindow addSubview:resizableImageView];
-    scaleAniamtionImageView.hidden = YES;
+    scaleAnimationImageView.hidden = YES;
     
-    void (^completion)() = ^() {
-        scaleAniamtionImageView.hidden = NO;
+    void (^completion)(void) = ^() {
+        scaleAnimationImageView.hidden = NO;
         self.view.alpha = 1.0f;
         _pagingScrollView.alpha = 1.0f;
         resizableImageView.backgroundColor = [UIColor colorWithWhite:0 alpha:1];
@@ -784,6 +784,15 @@ static void * MWVideoPlayerObservation = &MWVideoPlayerObservation;
     }
 }
 
+- (BOOL)shouldPerformCloseAnimation {
+    if ([self scaleAnimationImageViewAtIndex:_currentPageIndex] ||
+        [self scaleImageAtIndex:_currentPageIndex]) {
+        CGRect scaleAnimationViewOriginalFrame = [self scaleAnimationImageViewOriginalFrameAtIndex:_currentPageIndex];
+        return !CGRectEqualToRect(scaleAnimationViewOriginalFrame, CGRectZero) && CGRectIntersectsRect([UIScreen mainScreen].bounds, scaleAnimationViewOriginalFrame);
+    }
+    return NO;
+}
+
 - (void)performCloseAnimationWithScrollView:(MWZoomingScrollView *)scrollView {
     float fadeAlpha = 1 - fabs(scrollView.frame.origin.y)/scrollView.frame.size.height;
     
@@ -822,15 +831,15 @@ static void * MWVideoPlayerObservation = &MWVideoPlayerObservation;
     [_applicationWindow addSubview:resizableImageView];
     self.view.hidden = YES;
     
-    UIImageView *scaleAniamtionImageView = [self scaleAnimationImageViewAtIndex:_currentPageIndex];
+    UIView *scaleAnimationImageView = [self scaleAnimationImageViewAtIndex:_currentPageIndex];
     CGRect scaleAnimationViewOriginalFrame = [self scaleAnimationImageViewOriginalFrameAtIndex:_currentPageIndex];
     if (CGRectEqualToRect(scaleAnimationViewOriginalFrame, CGRectZero)) {
-        scaleAnimationViewOriginalFrame = [scaleAniamtionImageView.superview convertRect:scaleAniamtionImageView.frame toView:nil];
+        scaleAnimationViewOriginalFrame = [scaleAnimationImageView.superview convertRect:scaleAnimationImageView.frame toView:nil];
     }
-    scaleAniamtionImageView.hidden = YES;
+    scaleAnimationImageView.hidden = YES;
     
-    void (^completion)() = ^() {
-        scaleAniamtionImageView.hidden = NO;
+    void (^completion)(void) = ^() {
+        scaleAnimationImageView.hidden = NO;
         
         [fadeView removeFromSuperview];
         [resizableImageView removeFromSuperview];
@@ -1073,7 +1082,7 @@ static void * MWVideoPlayerObservation = &MWVideoPlayerObservation;
     }
 }
 
-- (UIImageView *)scaleAnimationImageViewAtIndex:(NSUInteger)index {
+- (UIView *)scaleAnimationImageViewAtIndex:(NSUInteger)index {
     if ([self.delegate respondsToSelector:@selector(photoBrowser:scaleAnimationImageViewAtIndex:)]) {
         return [self.delegate photoBrowser:self scaleAnimationImageViewAtIndex:index];
     } else {
@@ -2044,8 +2053,7 @@ static void * MWVideoPlayerObservation = &MWVideoPlayerObservation;
 - (void)dismissUserInterface {
     [self notifyWillDismiss];
     
-    if ([self scaleAnimationImageViewAtIndex:_currentPageIndex] ||
-        [self scaleImageAtIndex:_currentPageIndex]) {
+    if ([self shouldPerformCloseAnimation]) {
         MWZoomingScrollView *scrollView = [self pageDisplayedAtIndex:_currentPageIndex];
         [self performCloseAnimationWithScrollView:scrollView];
     } else {

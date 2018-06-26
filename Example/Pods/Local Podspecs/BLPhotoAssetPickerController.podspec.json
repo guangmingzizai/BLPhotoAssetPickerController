@@ -1,6 +1,6 @@
 {
   "name": "BLPhotoAssetPickerController",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "summary": "A image picker supports multiple selection.",
   "description": "TODO: Add long description of the pod here.",
   "homepage": "https://github.com/guangmingzizai/BLPhotoAssetPickerController",
@@ -13,7 +13,7 @@
   },
   "source": {
     "git": "https://github.com/guangmingzizai/BLPhotoAssetPickerController.git",
-    "tag": "0.1.5"
+    "tag": "0.1.6"
   },
   "platforms": {
     "ios": "8.0"
@@ -34,7 +34,7 @@
 
     ],
     "MWPhotoBrowser@guangmingzizai": [
-      "~> 2.2.3"
+      "~> 2.2.4"
     ],
     "Masonry": [
 
