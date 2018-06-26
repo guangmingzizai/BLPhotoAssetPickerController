@@ -37,7 +37,7 @@
         size.width += 2;
         _cameraLabel = [[UILabel alloc]init];
         [self addSubview:_cameraLabel];
-        _cameraLabel.textColor = UIColorFromRGB(0xffcb00);
+        _cameraLabel.textColor = UIColorFromRGB(0x796CF0);
         _cameraLabel.textAlignment = NSTextAlignmentCenter;
         _cameraLabel.font = [UIFont systemFontOfSize:12];
         _cameraLabel.text = cameraStr;
