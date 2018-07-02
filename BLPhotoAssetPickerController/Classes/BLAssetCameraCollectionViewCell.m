@@ -51,6 +51,7 @@
         });
         
         _cameraImageView = [[UIImageView alloc]initWithImage:[UIImage _imageForName:@"status_camera" inBundle:[NSBundle bundleForClass:[self class]]]];
+        _cameraImageView.contentMode = UIViewContentModeScaleAspectFit;
         [self addSubview:_cameraImageView];
         //collectionViewCell先绘制
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.05 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
