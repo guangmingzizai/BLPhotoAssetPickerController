@@ -15,6 +15,8 @@
 #import "PHAssetCollection+BLPhotoUtils.h"
 #import "ImageUtils.h"
 #import "Constants.h"
+#import <MobileCoreServices/UTCoreTypes.h>
+#import <SDWebImage/UIImage+GIF.h>
 
 @implementation BLPhotoDataCenter {
     NSArray *_phAssetsCollectionSubtypes;
@@ -184,35 +186,56 @@
     [self requestImagesForAssets:assets maxSize:CGSizeMake(UPLOAD_IMAGE_WIDTH, UPLOAD_IMAGE_HEIGHT) completionBlock:completionBlock requestIDsBlock:requestIDsBlock];
 }
 
-+ (void)requestImagesForAssets:(NSArray<PHAsset *> *)assets maxSize:(CGSize)maxSize completionBlock:(void (^) (NSArray<UIImage *> *array))completionBlock requestIDsBlock:(void (^) (NSArray<NSNumber *> *requestArray))requestIDsBlock {
++ (void)requestImagesForAssets:(NSArray<PHAsset *> *)assets maxSize:(CGSize)maxSize completionBlock:(void (^) (NSArray<BLPhotoAssetImageRequestResultItem *> *array))completionBlock requestIDsBlock:(void (^) (NSArray<NSNumber *> *requestArray))requestIDsBlock {
     if (assets.count == 0) {
         completionBlock(@[]);
         return;
     }
     
-    NSMutableArray<UIImage *> *imageArray = [NSMutableArray array];
+    NSMutableArray<BLPhotoAssetImageRequestResultItem *> *imageArray = [NSMutableArray array];
     NSMutableArray<NSNumber *> *requestArray = [NSMutableArray array];
     NSMutableDictionary *assetImageDic = [NSMutableDictionary dictionary];
+    
     for (volatile int i = 0; i < assets.count; i ++) {
         PHAsset *asset = [assets objectAtIndex:i];
         PHImageRequestOptions *options = [[PHImageRequestOptions alloc] init];
         options.resizeMode = PHImageRequestOptionsResizeModeExact;
         options.deliveryMode = PHImageRequestOptionsDeliveryModeHighQualityFormat;
         options.networkAccessAllowed = YES;
-        
         CGSize targetSize = [[BLPhotoDataCenter sharedInstance] caculateTargetSize:CGSizeMake(asset.pixelWidth, asset.pixelHeight) maxWidth:maxSize.width maxHeight:maxSize.height];
-        PHImageRequestID requestID = [[PHImageManager defaultManager] requestImageForAsset:asset targetSize:targetSize contentMode:PHImageContentModeAspectFit options:options resultHandler:^(UIImage * _Nullable result, NSDictionary * _Nullable info) {
-            if (result) {
-                assetImageDic[@(i)] = result;
-                if (assetImageDic.count == assets.count) {
-                    for (int j = 0; j < assets.count; j++) {
-                        [imageArray addObject:assetImageDic[@(j)]];
+        
+        NSString *uniformTypeIdentifier = [asset valueForKey:@"uniformTypeIdentifier"];
+        
+        if ([uniformTypeIdentifier isEqualToString:(__bridge NSString *)kUTTypeGIF]) {
+            PHImageRequestID requestID = [[PHImageManager defaultManager] requestImageDataForAsset:asset options:options resultHandler:^(NSData * _Nullable imageData, NSString * _Nullable dataUTI, UIImageOrientation orientation, NSDictionary * _Nullable info) {
+                if (imageData) {
+                    UIImage *image = [UIImage sd_animatedGIFWithData:imageData];
+                    
+                    assetImageDic[@(i)] = [BLPhotoAssetImageRequestResultItem itemWithImage:image imageData:imageData];
+                    if (assetImageDic.count == assets.count) {
+                        for (int j = 0; j < assets.count; j++) {
+                            [imageArray addObject:assetImageDic[@(j)]];
+                        }
+                        completionBlock(imageArray);
                     }
-                    completionBlock(imageArray);
                 }
-            }
-        }];
-        [requestArray addObject:[NSNumber numberWithInt:(requestID)]];
+            }];
+            [requestArray addObject:[NSNumber numberWithInt:(requestID)]];
+        } else {
+            PHImageRequestID requestID = [[PHImageManager defaultManager] requestImageForAsset:asset targetSize:targetSize contentMode:PHImageContentModeAspectFit options:options resultHandler:^(UIImage * _Nullable result, NSDictionary * _Nullable info) {
+                if (result) {
+                    UIImage *image = result;
+                    assetImageDic[@(i)] = [BLPhotoAssetImageRequestResultItem itemWithImage:image imageData:nil];
+                    if (assetImageDic.count == assets.count) {
+                        for (int j = 0; j < assets.count; j++) {
+                            [imageArray addObject:assetImageDic[@(j)]];
+                        }
+                        completionBlock(imageArray);
+                    }
+                }
+            }];
+            [requestArray addObject:[NSNumber numberWithInt:(requestID)]];
+        }
         if (requestArray.count == assets.count) {
             requestIDsBlock(requestArray);
         }

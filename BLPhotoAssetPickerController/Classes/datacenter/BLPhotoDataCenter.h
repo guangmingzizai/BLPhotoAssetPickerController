@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import <Photos/Photos.h>
+#import "BLPhotoAssetImageRequestResultItem.h"
 
 @interface BLPhotoDataCenter : NSObject
 
@@ -27,7 +28,7 @@
 
 // maxSize: (800, 1280), for upload images
 + (void)requestImagesForAssets:(NSArray<PHAsset *> *)assets completionBlock:(void (^) (NSArray<UIImage *> *array))completionBlock requestIDsBlock:(void (^) (NSArray<NSNumber *> *requestArray))requestIDsBlock;
-+ (void)requestImagesForAssets:(NSArray<PHAsset *> *)assets maxSize:(CGSize)maxSize completionBlock:(void (^) (NSArray<UIImage *> *array))completionBlock requestIDsBlock:(void (^) (NSArray<NSNumber *> *requestArray))requestIDsBlock;
++ (void)requestImagesForAssets:(NSArray<PHAsset *> *)assets maxSize:(CGSize)maxSize completionBlock:(void (^) (NSArray<BLPhotoAssetImageRequestResultItem *> *array))completionBlock requestIDsBlock:(void (^) (NSArray<NSNumber *> *requestArray))requestIDsBlock;
 
 + (void)getThumbnailDataFromAssets:(NSArray *)assets WithBlock:(void (^) (NSArray *array))thumbBlock withRequestIDBlock:(void (^) (NSArray *requestArray)) requestIdBlock;
 

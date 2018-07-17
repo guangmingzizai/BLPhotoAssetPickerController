@@ -37,9 +37,10 @@ TODO: Add long description of the pod here.
   }
 
   # s.public_header_files = 'Pod/Classes/**/*.h'
-    s.frameworks = 'UIKit', 'AssetsLibrary', 'QuartzCore'
+    s.frameworks = 'UIKit', 'AssetsLibrary', 'QuartzCore', 'MobileCoreServices'
     s.dependency 'MBProgressHUD'
     s.dependency 'MWPhotoBrowser@guangmingzizai', '~> 2.2.4'
     s.dependency 'Masonry'
+    s.dependency 'SDWebImage'
 
 end
