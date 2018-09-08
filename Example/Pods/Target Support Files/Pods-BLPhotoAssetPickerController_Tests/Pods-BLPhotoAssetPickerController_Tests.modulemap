@@ -1,6 +1,0 @@
-framework module Pods_BLPhotoAssetPickerController_Tests {
-  umbrella header "Pods-BLPhotoAssetPickerController_Tests-umbrella.h"
-
-  export *
-  module * { export * }
-}

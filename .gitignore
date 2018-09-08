@@ -19,6 +19,7 @@ DerivedData
 *.hmap
 *.ipa
 Example/BLPhotoAssetPickerController.xcworkspace/xcshareddata/
+Example/Pods/
 # Bundler
 .bundle
 

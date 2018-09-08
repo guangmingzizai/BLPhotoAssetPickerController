@@ -76,7 +76,7 @@
 		6CA8EEFE1DCDE1A200F5340F /* UITextField+LengthLimit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITextField+LengthLimit.m"; sourceTree = "<group>"; };
 		6CA8EEFF1DCDE1A200F5340F /* UITextView+LengthLimit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITextView+LengthLimit.h"; sourceTree = "<group>"; };
 		6CA8EF001DCDE1A200F5340F /* UITextView+LengthLimit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITextView+LengthLimit.m"; sourceTree = "<group>"; };
-		A7C1CEF909FB7F591144FDBA /* BLPhotoAssetPickerController.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = BLPhotoAssetPickerController.podspec; path = ../BLPhotoAssetPickerController.podspec; sourceTree = "<group>"; };
+		A7C1CEF909FB7F591144FDBA /* BLPhotoAssetPickerController.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = BLPhotoAssetPickerController.podspec; path = ../BLPhotoAssetPickerController.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		CD5DBDB5840D72334D708D13 /* Pods-BLPhotoAssetPickerController_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BLPhotoAssetPickerController_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-BLPhotoAssetPickerController_Example/Pods-BLPhotoAssetPickerController_Example.release.xcconfig"; sourceTree = "<group>"; };
 		CF28AEF083B671353A95F414 /* Pods-BLPhotoAssetPickerController_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BLPhotoAssetPickerController_Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BLPhotoAssetPickerController_Example/Pods-BLPhotoAssetPickerController_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		D6BA3D6115C903617F488801 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
@@ -242,7 +242,6 @@
 				6003F587195388D20070C39A /* Frameworks */,
 				6003F588195388D20070C39A /* Resources */,
 				AC6AEB9C1AEEA2E43EF14A9A /* [CP] Embed Pods Frameworks */,
-				7534C94422CBC947FE4DEEF6 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -261,8 +260,6 @@
 				6003F5AA195388D20070C39A /* Sources */,
 				6003F5AB195388D20070C39A /* Frameworks */,
 				6003F5AC195388D20070C39A /* Resources */,
-				D1402562CCAFD6B35665F42A /* [CP] Embed Pods Frameworks */,
-				32DC11543A58B8BF44E7A64D /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -332,21 +329,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		32DC11543A58B8BF44E7A64D /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-BLPhotoAssetPickerController_Tests/Pods-BLPhotoAssetPickerController_Tests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		44551D898E62E5B32CB28B85 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -363,21 +345,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		7534C94422CBC947FE4DEEF6 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-BLPhotoAssetPickerController_Example/Pods-BLPhotoAssetPickerController_Example-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		AC6AEB9C1AEEA2E43EF14A9A /* [CP] Embed Pods Frameworks */ = {
@@ -416,21 +383,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-BLPhotoAssetPickerController_Example/Pods-BLPhotoAssetPickerController_Example-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		D1402562CCAFD6B35665F42A /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-BLPhotoAssetPickerController_Tests/Pods-BLPhotoAssetPickerController_Tests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		DF61B5D1437D389A37EF38E3 /* [CP] Check Pods Manifest.lock */ = {
